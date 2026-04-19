@@ -1,13 +1,22 @@
-import LoginForm from "../components/LoginForm"
-
-export const metadata = {
-  title: "Sign In",
-  description: "Sign in to your account",
-}
+import LoginForm from '../components/LoginForm'
+import { useAuth } from '../context/AuthContext'
+import { Navigate } from 'react-router-dom'
 
 export default function LoginPage() {
+  const { isAuthenticated, loading } = useAuth()
+
+  if (loading) return null
+  if (isAuthenticated) return <Navigate to="/" replace />
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
+    <main className="bg-grid" style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: '100vh',
+      padding: '24px',
+    }}>
       <LoginForm />
     </main>
   )

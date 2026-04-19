@@ -1,167 +1,158 @@
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/AuthContext'
 
-export default function RegisterForm() {
+export default function RegistrationForm() {
   const navigate = useNavigate()
-  const [email, setEmail] = useState("")
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [error, setError] = useState("")
+  const { register } = useAuth()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError("")
-    setLoading(true)
+    setError('')
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address")
-      setLoading(false)
+    if (password !== confirmPassword) {
+      setError('Passwords do not match')
       return
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters")
-      setLoading(false)
+      setError('Password must be at least 6 characters')
       return
     }
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match")
-      setLoading(false)
-      return
-    }
+    setLoading(true)
 
     try {
-      // LocalStorage-based registration (no backend)
-      const usersRaw = localStorage.getItem("users")
-      const users = usersRaw ? JSON.parse(usersRaw) : []
-
-      const exists = users.some((u) => u.email.toLowerCase() === email.toLowerCase())
-      if (exists) {
-        setError("An account with this email already exists")
-        setLoading(false)
-        return
-      }
-
-      const newUser = { email, username: username || "", password }
-      const updated = [...users, newUser]
-      localStorage.setItem("users", JSON.stringify(updated))
-
-      setSuccess(true)
-      // Set current session
-      localStorage.setItem("user", JSON.stringify({ email, username: username || "" }))
-
-      setEmail("")
-      setUsername("")
-      setPassword("")
-      setConfirmPassword("")
-
-      setTimeout(() => navigate("/"), 800)
+      await register(name, email, password)
+      navigate('/')
     } catch (err) {
-      setError(err.message || "An error occurred")
+      const msg = err.response?.data?.error || err.message || 'Registration failed'
+      setError(msg)
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="w-full max-w-md">
-      <div className="bg-card rounded-lg border border-border p-8 shadow-sm">
-        <h2 className="text-2xl font-bold text-foreground mb-2">Create Account</h2>
-        <p className="text-muted-foreground text-sm mb-6">Join us today and get started</p>
-
-        {success && (
-          <div className="mb-4 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
-            <p className="text-green-800 dark:text-green-300 text-sm">Account created successfully! Redirecting...</p>
+    <div className="animate-fade-in" style={{ width: '100%', maxWidth: '420px' }}>
+      <div className="glass-card" style={{ padding: '40px' }}>
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <div style={{
+            width: '56px',
+            height: '56px',
+            borderRadius: '14px',
+            background: 'linear-gradient(135deg, var(--gradient-start), var(--gradient-end))',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '24px',
+            margin: '0 auto 16px',
+          }}>
+            🎓
           </div>
-        )}
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '6px' }}>
+            Create Account
+          </h2>
+        </div>
 
+        {/* Error Alert */}
         {error && (
-          <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
-            <p className="text-red-800 dark:text-red-300 text-sm">{error}</p>
+          <div className="alert alert-error" style={{ marginBottom: '20px' }}>
+            <span>⚠️</span> {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="username" className="block text-sm font-medium text-foreground mb-2">
-              Username (optional)
-            </label>
+        {/* Form */}
+        <form onSubmit={handleSubmit}>
+          <div style={{ marginBottom: '16px' }}>
+            <label className="form-label" htmlFor="reg-name">Full Name</label>
             <input
-              id="username"
+              id="reg-name"
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="yourname"
-              className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+              className="input-field"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="John Doe"
+              required
               disabled={loading}
             />
           </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-              Email Address
-            </label>
+
+          <div style={{ marginBottom: '16px' }}>
+            <label className="form-label" htmlFor="reg-email">Email Address</label>
             <input
-              id="email"
+              id="reg-email"
               type="email"
+              className="input-field"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+              required
               disabled={loading}
             />
           </div>
 
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">
-              Password
-            </label>
+          <div style={{ marginBottom: '16px' }}>
+            <label className="form-label" htmlFor="reg-password">Password</label>
             <input
-              id="password"
+              id="reg-password"
               type="password"
+              className="input-field"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+              required
+              minLength={6}
               disabled={loading}
             />
           </div>
 
-          <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-foreground mb-2">
-              Confirm Password
-            </label>
+          <div style={{ marginBottom: '24px' }}>
+            <label className="form-label" htmlFor="reg-confirm">Confirm Password</label>
             <input
-              id="confirmPassword"
+              id="reg-confirm"
               type="password"
+              className="input-field"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-4 py-2 border border-input rounded-md bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
+              required
               disabled={loading}
             />
           </div>
 
           <button
             type="submit"
+            className="btn-primary"
+            style={{ width: '100%' }}
             disabled={loading}
-            className="w-full py-2 px-4 bg-primary text-primary-foreground font-medium rounded-md hover:opacity-90 disabled:opacity-50 transition-opacity"
           >
-            {loading ? "Creating account..." : "Create Account"}
+            {loading ? (
+              <>
+                <div className="spinner"></div>
+                Creating account...
+              </>
+            ) : (
+              'Create Account'
+            )}
           </button>
         </form>
 
-        <div className="mt-6 text-center text-sm text-muted-foreground">
-          Already have an account?{" "}
-          <Link to="/login" className="text-primary hover:underline font-medium">
+        <div className="divider"></div>
+
+        <p style={{ textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+          Already have an account?{' '}
+          <Link to="/login" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 500 }}>
             Sign in
           </Link>
-        </div>
+        </p>
       </div>
     </div>
   )

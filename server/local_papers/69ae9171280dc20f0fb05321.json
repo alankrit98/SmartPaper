@@ -1,0 +1,339 @@
+{
+  "name": "ST1",
+  "metadata": {
+    "exam": "Sessional Test 1 (ST1)",
+    "subject": "Theory of Automata and Formal Languages",
+    "subject_code": "N/A",
+    "duration": "3 Hours",
+    "max_marks": 55
+  },
+  "instructions": [
+    "Attempt all questions from Section A.",
+    "Attempt all questions from Section B (internal choices provided).",
+    "Attempt all questions from Section C (internal choices provided).",
+    "Assume standard notations for Σ, δ, q0, and F unless specified otherwise."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Technical Analysis",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "A Deterministic Finite Automaton (DFA) M accepts a language L. If we create a new machine M' by swapping all non-final states with final states, under what specific condition regarding the alphabet Σ will M' accept exactly the complement of L? Justify with respect to the total transition function constraint.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Finite Automata",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "In a communication protocol, a Mealy machine is designed to provide an output at every clock pulse. If the protocol requires a specific output '1' only when the sequence '101' is detected, explain why a Moore machine would require an additional state compared to the Mealy machine to achieve the same timing behavior.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Moore and Mealy Machines",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Consider the regular expression R = (a+b)*abb. If a string 'w' is of length 'n', determine the minimum number of states required in a Non-deterministic Finite Automaton (NFA) to accept 'w' such that 'w' ends with 'abb'. How does this count change for a DFA?",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Regular Expressions",
+              "co": 2,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "An ε-NFA has 5 states and 3 ε-transitions forming a cycle between three states. If the ε-closure of the start state q0 contains 4 states, analyze the impact on the resulting DFA's start state construction during the subset construction process.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "NFA with epsilon",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "Using the Pumping Lemma for regular languages, if a language L is finite, explain why the pumping constant 'p' must logically be greater than the length of the longest string in L. What happens if we attempt to pump a string of length less than 'p'?",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Pumping Lemma",
+              "co": 2,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Analytical Problem Solving",
+      "marks_scheme": "5 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 6,
+          "type": "choice_group",
+          "marks": 5,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "A parity generator circuit must output 'E' if the number of 1s received so far is even and 'O' if it is odd. However, the circuit resets if it receives three consecutive 0s. Construct a Mealy machine for this scenario and determine if any states are redundant.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Mealy Machines",
+              "co": 1,
+              "bloom_level": "K6"
+            },
+            {
+              "label": "b",
+              "text": "Design a DFA that accepts strings over Σ={0, 1} representing binary numbers that are divisible by 3 but NOT divisible by 2. Provide the state transition diagram and verify with the string '1001'.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Finite Automata",
+              "co": 1,
+              "bloom_level": "K6"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "choice_group",
+          "marks": 5,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Convert the following ε-NFA to a DFA: States {A, B, C}, Σ={0, 1}, Transitions: δ(A,0)={A}, δ(A,ε)={B}, δ(B,1)={C}, δ(C,ε)={A}. A is the start state and C is the final state. Analyze if the resulting DFA is minimal.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "NFA to DFA",
+              "co": 1,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Given the regular expression R = 0(0+1)*0 + 1(0+1)*1. Describe the language in plain English. Construct an NFA without ε-transitions that accepts the complement of this language.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Regular Expressions",
+              "co": 2,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 8,
+          "type": "choice_group",
+          "marks": 5,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Apply Arden's Theorem to find the regular expression for a machine with states {q1, q2}, where q1 is start, q2 is final, and transitions are: δ(q1,0)=q1, δ(q1,1)=q2, δ(q2,0)=q2, δ(q2,1)=q1. Solve the equations step-by-step.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Arden's Theorem",
+              "co": 2,
+              "bloom_level": "K3"
+            },
+            {
+              "label": "b",
+              "text": "A system's state diagram is represented by the equations: X1 = 0.X1 + 1.X2 + ε, X2 = 1.X1 + 0.X2. Here Xi represents the language accepted starting from state i. Find the expression for X1 and interpret the language.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Arden's Theorem",
+              "co": 2,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "choice_group",
+          "marks": 5,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Prove that the language L = { a^n b^m | n > m } is not regular using the Pumping Lemma. In your proof, specifically address why picking a string w = a^(p+1) b^p is a valid starting point where p is the pumping length.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Pumping Lemma",
+              "co": 2,
+              "bloom_level": "K5"
+            },
+            {
+              "label": "b",
+              "text": "Consider the language L = { w ∈ {0,1}* | w is a palindrome }. Use the Pumping Lemma to demonstrate its non-regularity. Explain the significance of the condition |xy| ≤ p in your contradiction.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Pumping Lemma",
+              "co": 2,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "choice_group",
+          "marks": 5,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Given a DFA with 8 states, use the table-filling algorithm to find the equivalent minimal DFA. The states are q0-q7, where q0 is start and {q2, q5} are final. Transitions: δ(qi, 0) = q(i+1 mod 8), δ(qi, 1) = q(i+2 mod 8).",
+              "marks": 5,
+              "difficulty": "very hard",
+              "topic": "DFA Minimization",
+              "co": 1,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Analyze the closure properties of regular languages. If L1 is regular and L2 is non-regular, is the concatenation L1.L2 necessarily non-regular? Provide a counter-example or a proof to justify your stance.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Closure Properties",
+              "co": 2,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Comprehensive Scenario Analysis",
+      "marks_scheme": "10 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "choice_group",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Scenario: A sequence detector is needed for a high-speed fiber optic link. It must detect the pattern '0101' and '110' simultaneously. (i) Design a single NFA that accepts strings ending in either pattern. (ii) Convert this NFA to a DFA. (iii) Optimize the DFA using the Myhill-Nerode theorem logic to ensure it uses the absolute minimum number of states for hardware efficiency.",
+              "marks": 10,
+              "difficulty": "very hard",
+              "topic": "Automata Design",
+              "co": 1,
+              "bloom_level": "K6"
+            },
+            {
+              "label": "b",
+              "text": "Scenario: A text processing engine uses regular expressions to find valid timestamps in the format 'HH:MM' (24-hour clock). (i) Write a formal regular expression for this language. (ii) Construct a DFA for this regex. (iii) Prove that the set of all 'invalid' timestamps is also a regular language by constructing a machine that accepts the complement.",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Regular Expressions and DFA",
+              "co": 2,
+              "bloom_level": "K6"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "choice_group",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Design a Moore machine that acts as a modulo-4 counter for the number of '1's in an input stream, but it resets to zero whenever the sequence '00' is encountered. (i) Provide the State Transition Table and Diagram. (ii) Convert this Moore machine into an equivalent Mealy machine. (iii) Compare the number of states and the output latency between the two models.",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Moore and Mealy Machines",
+              "co": 1,
+              "bloom_level": "K5"
+            },
+            {
+              "label": "b",
+              "text": "Analyze the language L = { w | w has an equal number of '01' and '10' substrings }. (i) Is this language regular? If yes, construct a DFA; if no, prove using Pumping Lemma. (ii) If the alphabet is changed to Σ={0, 1, 2}, and the condition is equal number of '01' and '12', how does the complexity of the machine change? Justify your answer using the concept of memory in finite automata.",
+              "marks": 10,
+              "difficulty": "very hard",
+              "topic": "Language Classification",
+              "co": 2,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 5,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 5,
+      "questionType": "choice_group"
+    },
+    {
+      "section": "C",
+      "questions": 2,
+      "marksEach": 10,
+      "questionType": "choice_group"
+    }
+  ],
+  "difficulty": "Very Hard (100%)",
+  "createdBy": "69ad6ac85412eb1b0da21d91",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69ae9171280dc20f0fb05321.pdf",
+  "_id": "69ae9171280dc20f0fb05321",
+  "createdAt": "2026-03-09T09:22:57.117Z",
+  "updatedAt": "2026-03-09T09:23:00.446Z",
+  "__v": 0
+}

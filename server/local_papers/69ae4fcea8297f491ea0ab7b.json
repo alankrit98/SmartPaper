@@ -1,0 +1,398 @@
+{
+  "name": "Sessional Test 1",
+  "metadata": {
+    "exam": "End Semester Examination",
+    "subject": "Data Structures",
+    "subject_code": "BCS301",
+    "duration": "3 Hours",
+    "max_marks": 70
+  },
+  "instructions": [
+    "Attempt all questions.",
+    "Each question carries marks as indicated in the respective sections.",
+    "Assume suitable data if necessary."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Define the concept of Time-Space trade-off in the context of algorithm efficiency.",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Introduction",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "State the difference between Row Major Order and Column Major Order for 2D array representation.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Arrays",
+              "co": 1,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Define a Sparse Matrix and explain its representation using a triplet format.",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Arrays",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "Explain the term 'Tail Recursion' with a simple example.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Stacks",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "List the properties of a Dequeue (Double-Ended Queue).",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Queues",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "Define a Threaded Binary Tree and explain its advantage over a normal binary tree.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "Compare the adjacency matrix and adjacency list representations of a graph.",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Graphs",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Medium Answer Questions",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 8,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Explain the pointer implementation of a Doubly Linked List and describe the algorithm for deleting a node from a specific position.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Linked lists",
+              "co": 1,
+              "bloom_level": "K3"
+            },
+            {
+              "label": "b",
+              "text": "Analyse the process of removing recursion using a stack. Illustrate this by converting a recursive Factorial algorithm into an iterative one using an explicit stack.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Stacks",
+              "co": 4,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Describe the Quick Sort algorithm. Provide a detailed analysis of its time complexity in best, average, and worst-case scenarios.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Sorting",
+              "co": 2,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Explain the concept of Hashing. Describe any three collision resolution techniques with suitable examples.",
+              "marks": 7,
+              "difficulty": "medium",
+              "topic": "Searching",
+              "co": 2,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Explain the balancing criteria for an AVL tree. Illustrate the four types of rotations (LL, RR, LR, RL) used to maintain balance during insertion.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K3"
+            },
+            {
+              "label": "b",
+              "text": "Describe Dijkstra’s algorithm to find the shortest path in a weighted graph. Apply it to a hypothetical graph with 5 vertices.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Graphs",
+              "co": 5,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Detailed Analysis Questions",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Derive the address calculation formula for an element A[i][j][k] in a 3-D array stored in Row Major Order.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Arrays",
+              "co": 1,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Explain how a single variable polynomial can be represented using a linked list. Describe the algorithm for the addition of two such polynomials.",
+              "marks": 7,
+              "difficulty": "medium",
+              "topic": "Linked lists",
+              "co": 1,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Explain the implementation of a Circular Queue using an array. Discuss the conditions for 'Queue Full' and 'Queue Empty' in this implementation.",
+              "marks": 7,
+              "difficulty": "medium",
+              "topic": "Queues",
+              "co": 1,
+              "bloom_level": "K2"
+            },
+            {
+              "label": "b",
+              "text": "Describe the algorithm to evaluate a postfix expression using a stack. Show the step-by-step stack status for the expression: 5 3 + 8 2 / *.",
+              "marks": 7,
+              "difficulty": "medium",
+              "topic": "Stacks",
+              "co": 1,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 13,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Explain the Heap Sort algorithm. Illustrate the process of building a Max-Heap and performing the sort operation on an array of 7 elements.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Sorting",
+              "co": 2,
+              "bloom_level": "K3"
+            },
+            {
+              "label": "b",
+              "text": "Define a B-Tree. Explain its structural properties and the process of searching for a key within a B-Tree of order 'm'.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 14,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Construct a binary tree from the given traversal sequences: Inorder: D B E A F C G; Preorder: A B D E C F G. Explain the logic used.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K3"
+            },
+            {
+              "label": "b",
+              "text": "Explain the Huffman Coding algorithm. How does it use a binary tree to generate prefix-free codes for data compression?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 15,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Compare Prim’s and Kruskal’s algorithms for finding the Minimum Spanning Tree (MST) of a graph in terms of their approach and complexity.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Graphs",
+              "co": 5,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Describe Warshall’s algorithm for finding the transitive closure of a directed graph. Explain the concept of a reachability matrix.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Graphs",
+              "co": 5,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 7,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 3,
+      "marksEach": 7,
+      "questionType": "choice_group"
+    },
+    {
+      "section": "C",
+      "questions": 5,
+      "marksEach": 7,
+      "questionType": "choice_group"
+    }
+  ],
+  "difficulty": "Hard (83%)",
+  "createdBy": "69ad6ac85412eb1b0da21d91",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69ae4fcea8297f491ea0ab7b.pdf",
+  "_id": "69ae4fcea8297f491ea0ab7b",
+  "createdAt": "2026-03-09T04:42:54.459Z",
+  "updatedAt": "2026-03-09T04:42:56.281Z",
+  "__v": 0
+}

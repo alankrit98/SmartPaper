@@ -1,46 +1,144 @@
-const PaperPreview = ({ paperData }) => {
-  if (!paperData) return null;
+export default function PaperPreview({ paper }) {
+  if (!paper) return null
 
-  const { paper } = paperData;
+  const meta = paper.metadata || {}
+  const sections = paper.sections || []
+  const instructions = paper.instructions || []
+
+  const collegeName = meta.exam || 'University College of Engineering'
+  const subjectName = meta.subject || paper.subject || 'N/A'
+  const subjectCode = meta.subject_code || ''
+  const duration = meta.duration || '3 Hours'
+  const maxMarks = meta.max_marks || paper.totalMarks || 0
+
+  const renderSubquestion = (sq) => (
+    <li key={sq.label} style={{ marginBottom: '6px' }}>
+      <span className="q-text">{sq.text}</span>
+      <span className="q-marks"> [{sq.marks} Marks]</span>
+      {sq.bloom_level && <span className="tag tag-bloom">{sq.bloom_level}</span>}
+      {sq.co && <span className="tag tag-co">CO{sq.co}</span>}
+    </li>
+  )
+
+  const renderQuestion = (q) => {
+    if (q.type === 'single' && q.subquestions?.length > 0) {
+      const sq = q.subquestions[0]
+      return (
+        <div key={q.question_id} className="question-block">
+          <div className="q-header">
+            <span className="q-num">Q{q.question_id}.</span>
+            <span className="q-text">{sq.text}</span>
+            <span className="q-marks">[{q.marks} Marks]</span>
+          </div>
+          <div style={{ marginLeft: '30px', marginTop: '2px' }}>
+            {sq.bloom_level && <span className="tag tag-bloom">{sq.bloom_level}</span>}
+            {sq.co && <span className="tag tag-co">CO{sq.co}</span>}
+          </div>
+        </div>
+      )
+    }
+
+    if (q.type === 'subparts' && q.subquestions?.length > 0) {
+      return (
+        <div key={q.question_id} className="question-block">
+          <div className="q-header">
+            <span className="q-num">Q{q.question_id}.</span>
+            <span className="q-marks">[{q.marks} Marks]</span>
+          </div>
+          <ol className="subparts">
+            {q.subquestions.map(renderSubquestion)}
+          </ol>
+        </div>
+      )
+    }
+
+    if (q.type === 'choice_group') {
+      return (
+        <div key={q.question_id} className="question-block">
+          <div className="q-header">
+            <span className="q-num">Q{q.question_id}.</span>
+            <span className="q-marks">[{q.marks} Marks]</span>
+          </div>
+          {q.subquestions?.length > 0 && (
+            <ol className="subparts">
+              {q.subquestions.map(renderSubquestion)}
+            </ol>
+          )}
+          {q.options?.length > 0 && (
+            <>
+              <div className="or-label">OR</div>
+              <ol className="subparts">
+                {q.options.map((opt) => (
+                  <li key={opt.label} style={{ marginBottom: '6px' }}>
+                    <span className="q-text">{opt.text}</span>
+                    <span className="q-marks"> [{opt.marks} Marks]</span>
+                  </li>
+                ))}
+              </ol>
+            </>
+          )}
+        </div>
+      )
+    }
+
+    return null
+  }
 
   return (
-    <div className="paper-preview">
+    <div className="paper-preview animate-slide-up">
+      {/* Header */}
       <div className="paper-header">
-        <h2>{paperData.subject} (Final Year Exam)</h2>
-        <p>Generated on: {new Date(paperData.generatedAt).toLocaleString()}</p>
+        <h1>{collegeName}</h1>
+        <h2>{subjectName}</h2>
+        {subjectCode && <h3>{subjectCode}</h3>}
       </div>
 
-      <div className="section">
-        <h3>SECTION A (20 Marks) - Attempt all questions</h3>
-        {paper.sectionA.length === 0 ? <p>Not enough questions in DB</p> : 
-         paper.sectionA.map((q, idx) => (
-          <p key={q._id}><strong>{idx + 1}.</strong> {q.question_text} (Unit {q.unit})</p>
-        ))}
+      {/* Meta */}
+      <div className="paper-meta">
+        <div>
+          <p><strong>Subject:</strong> {subjectName}</p>
+          {subjectCode && <p><strong>Code:</strong> {subjectCode}</p>}
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <p><strong>Max Marks:</strong> {maxMarks}</p>
+          <p><strong>Duration:</strong> {duration}</p>
+        </div>
       </div>
 
-      <div className="section">
-        <h3>SECTION B (30 Marks) - Attempt any three</h3>
-        {paper.sectionB.map((q, idx) => (
-          <p key={q._id}><strong>{idx + 1}.</strong> {q.question_text} (Unit {q.unit})</p>
-        ))}
-      </div>
+      {/* Instructions */}
+      {instructions.length > 0 && (
+        <div className="paper-instructions">
+          <strong>Instructions:</strong>
+          <ol>
+            {instructions.map((inst, i) => <li key={i}>{inst}</li>)}
+          </ol>
+        </div>
+      )}
 
-      <div className="section">
-        <h3>SECTION C (50 Marks) - Attempt one from each</h3>
-        {paper.sectionC.map((item, idx) => (
-          <div key={idx} style={{marginBottom: '15px'}}>
-             <h4>Question {idx + 3} (Unit {item.unit})</h4>
-             {item.questions.map((q, qIdx) => (
-               <p key={q._id}>
-                 {qIdx === 0 ? '(a) ' : 'OR (b) '} 
-                 {q.question_text}
-               </p>
-             ))}
+      {/* Sections */}
+      {sections.map((section) => (
+        <div key={section.section_id} className="paper-section">
+          <div className="section-title">
+            {section.title && !section.title.toLowerCase().startsWith('section')
+              ? `Section ${section.section_id} — ${section.title}`
+              : section.title || `Section ${section.section_id}`}
           </div>
-        ))}
+          {(section.marks_scheme || section.attempt_rule) && (
+            <div className="section-info">
+              {section.marks_scheme}
+              {section.marks_scheme && section.attempt_rule && ' | '}
+              {section.attempt_rule}
+            </div>
+          )}
+          {section.questions?.map(renderQuestion)}
+        </div>
+      ))}
+
+      {/* Footer */}
+      <div className="paper-footer">
+        Generated by AI Question Paper Generator •{' '}
+        {new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}
       </div>
     </div>
-  );
-};
-
-export default PaperPreview;
+  )
+}
