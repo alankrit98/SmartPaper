@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useToast } from './Toast'
 
 export default function LoginForm() {
   const navigate = useNavigate()
   const { login } = useAuth()
+  const toast = useToast()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -21,6 +23,7 @@ export default function LoginForm() {
     } catch (err) {
       const msg = err.response?.data?.error || err.message || 'Login failed'
       setError(msg)
+      toast.error(msg)
     } finally {
       setLoading(false)
     }

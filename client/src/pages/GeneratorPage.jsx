@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import PaperPreviewModal from '../components/PaperPreviewModal'
 import AnalysisCharts from '../components/AnalysisCharts'
 import { useAuth } from '../context/AuthContext'
+import { useToast } from '../components/Toast'
 import { useNavigate } from 'react-router-dom'
 
 const SUBJECTS = [
@@ -27,6 +28,7 @@ const DEFAULT_PATTERN = [
 export default function GeneratorPage() {
   const { api } = useAuth()
   const navigate = useNavigate()
+  const toast = useToast()
   const fileInputRef = useRef(null)
 
   // Form state
@@ -92,7 +94,7 @@ export default function GeneratorPage() {
 
   const addSection = () => {
     if (pattern.length >= 10) {
-      setError('Maximum 10 sections allowed.')
+      toast.warning('Maximum 10 sections allowed.')
       return
     }
     const nextLabel = String.fromCharCode(65 + pattern.length)
@@ -101,7 +103,7 @@ export default function GeneratorPage() {
 
   const removeSection = (indexToRemove) => {
     if (pattern.length <= 1) {
-      setError('You must have at least one section.')
+      toast.warning('You must have at least one section.')
       return
     }
     const newPattern = pattern.filter((_, idx) => idx !== indexToRemove)
@@ -120,7 +122,7 @@ export default function GeneratorPage() {
       // Auto-extract units from the PDF
       handleExtractUnits(file)
     } else if (file) {
-      setError('Please upload a PDF file only.')
+      toast.error('Please upload a PDF file only.')
     }
   }
 
@@ -146,10 +148,12 @@ export default function GeneratorPage() {
         setSelectedUnits(data.data.units.map(u => u.unit_number))
       } else {
         setExtractError('No units could be extracted from this PDF.')
+        toast.warning('No units could be extracted from this PDF.')
       }
     } catch (err) {
       const msg = err.response?.data?.error || err.message || 'Failed to extract units'
       setExtractError(msg)
+      toast.error(msg)
     } finally {
       setExtractingUnits(false)
     }
@@ -182,6 +186,12 @@ export default function GeneratorPage() {
 
   // Generate paper
   const handleGenerate = async () => {
+    // Validate: if units were extracted, at least 1 must be selected
+    if (extractedUnits.length > 0 && selectedUnits.length === 0) {
+      toast.error('Please select at least 1 unit for paper generation.')
+      return
+    }
+
     setError('')
     setLoading(true)
     setShowPreview(false)
@@ -228,12 +238,14 @@ export default function GeneratorPage() {
 
       if (data.success) {
         setGeneratedPaper(data.data)
+        toast.success('Question paper generated successfully!')
       } else {
         throw new Error(data.error || 'Generation failed')
       }
     } catch (err) {
       const msg = err.response?.data?.error || err.message || 'Failed to generate paper'
       setError(msg)
+      toast.error(msg)
     } finally {
       setLoading(false)
     }
@@ -257,7 +269,7 @@ export default function GeneratorPage() {
       link.remove()
       window.URL.revokeObjectURL(url)
     } catch (err) {
-      setError('Failed to download PDF. Please try again.')
+      toast.error('Failed to download PDF. Please try again.')
     } finally {
       setDownloadingPDF(false)
     }
@@ -356,7 +368,7 @@ export default function GeneratorPage() {
 
               {/* Syllabus Upload */}
               <div style={{ marginBottom: '24px' }}>
-                <label className="form-label">Upload Syllabus PDF <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>(optional)</span></label>
+                <label className="form-label">Upload Syllabus PDF</label>
                 <div
                   className={`drop-zone ${dragOver ? 'drag-over' : ''} ${syllabusFile ? 'has-file' : ''}`}
                   onClick={() => fileInputRef.current?.click()}
@@ -513,18 +525,23 @@ export default function GeneratorPage() {
                           )
                         })}
                       </div>
-                      {selectedUnits.length > 0 && selectedUnits.length < extractedUnits.length && (
-                        <div style={{
-                          padding: '8px 16px',
-                          background: 'rgba(99, 102, 241, 0.04)',
-                          fontSize: '0.8rem',
-                          color: 'var(--accent)',
-                          fontWeight: 500,
-                          textAlign: 'center',
-                        }}>
-                          ✨ {selectedUnits.length} of {extractedUnits.length} units selected — questions will focus on these units only
-                        </div>
-                      )}
+                      {/* Status bar: unit count + warning if none selected */}
+                      <div style={{
+                        padding: '8px 16px',
+                        background: selectedUnits.length === 0 ? 'rgba(239, 68, 68, 0.06)' : 'rgba(99, 102, 241, 0.04)',
+                        fontSize: '0.8rem',
+                        color: selectedUnits.length === 0 ? 'var(--error)' : 'var(--accent)',
+                        fontWeight: 500,
+                        textAlign: 'center',
+                      }}>
+                        {selectedUnits.length === 0 ? (
+                          '⚠️ Select at least 1 unit to generate the paper'
+                        ) : selectedUnits.length === extractedUnits.length ? (
+                          `✅ All ${extractedUnits.length} units selected`
+                        ) : (
+                          `✨ ${selectedUnits.length} of ${extractedUnits.length} units selected — questions will focus on these units only`
+                        )}
+                      </div>
                     </div>
                   ) : null}
                 </div>
@@ -764,7 +781,7 @@ export default function GeneratorPage() {
                   }),
                 }}
                 onClick={handleGenerate}
-                disabled={loading}
+                disabled={loading || (extractedUnits.length > 0 && selectedUnits.length === 0)}
               >
                 {loading ? (
                   <>

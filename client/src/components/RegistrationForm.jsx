@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useToast } from './Toast'
 
 export default function RegistrationForm() {
   const navigate = useNavigate()
   const { register } = useAuth()
+  const toast = useToast()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -18,11 +20,13 @@ export default function RegistrationForm() {
 
     if (password !== confirmPassword) {
       setError('Passwords do not match')
+      toast.error('Passwords do not match')
       return
     }
 
     if (password.length < 6) {
       setError('Password must be at least 6 characters')
+      toast.error('Password must be at least 6 characters')
       return
     }
 
@@ -34,6 +38,7 @@ export default function RegistrationForm() {
     } catch (err) {
       const msg = err.response?.data?.error || err.message || 'Registration failed'
       setError(msg)
+      toast.error(msg)
     } finally {
       setLoading(false)
     }

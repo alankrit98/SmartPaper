@@ -4,10 +4,12 @@ import Navbar from '../components/Navbar'
 import PaperPreviewModal from '../components/PaperPreviewModal'
 import AnalysisCharts from '../components/AnalysisCharts'
 import { useAuth } from '../context/AuthContext'
+import { useToast } from '../components/Toast'
 
 export default function DashboardPage() {
   const navigate = useNavigate()
   const { api } = useAuth()
+  const toast = useToast()
   
   const [papers, setPapers] = useState([])
   const [loading, setLoading] = useState(true)
@@ -58,7 +60,7 @@ export default function DashboardPage() {
       link.remove()
       window.URL.revokeObjectURL(url)
     } catch (err) {
-      alert('Failed to download PDF. The file might not be available.')
+      toast.error('Failed to download PDF. The file might not be available.')
     } finally {
       setDownloadingId(null)
     }
@@ -72,10 +74,10 @@ export default function DashboardPage() {
         setPreviewPaper(data.data)
         setPreviewModalOpen(true)
       } else {
-        alert(data.error || 'Failed to fetch paper for preview.')
+        toast.error(data.error || 'Failed to fetch paper for preview.')
       }
     } catch (err) {
-      alert('Error fetching paper preview.')
+      toast.error('Error fetching paper preview.')
     } finally {
       setFetchingPreviewId(null)
     }
@@ -89,10 +91,10 @@ export default function DashboardPage() {
         setAnalysisPaper(data.data)
         setAnalysisModalOpen(true)
       } else {
-        alert(data.error || 'Failed to fetch paper for analysis.')
+        toast.error(data.error || 'Failed to fetch paper for analysis.')
       }
     } catch (err) {
-      alert('Error fetching paper for analysis.')
+      toast.error('Error fetching paper for analysis.')
     } finally {
       setFetchingAnalysisId(null)
     }
@@ -109,11 +111,12 @@ export default function DashboardPage() {
       const { data } = await api.delete(`/papers/${paperId}`)
       if (data.success) {
         setPapers(prev => prev.filter(p => p._id !== paperId))
+        toast.success('Paper deleted successfully.')
       } else {
-        alert(data.error || 'Failed to delete paper.')
+        toast.error(data.error || 'Failed to delete paper.')
       }
     } catch (err) {
-      alert(err.response?.data?.error || err.message || 'Error deleting paper.')
+      toast.error(err.response?.data?.error || err.message || 'Error deleting paper.')
     } finally {
       setDeletingId(null)
     }

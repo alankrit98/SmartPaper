@@ -1,0 +1,378 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "Examination",
+    "subject": "Data Structures",
+    "subject_code": "BCS301",
+    "duration": "3 Hours",
+    "max_marks": 70
+  },
+  "instructions": [
+    "Attempt all questions.",
+    "Each question carries equal marks within its section.",
+    "Assume suitable data where necessary."
+  ],
+  "sections": [
+    {
+      "section_id": "Section A",
+      "title": "Short Answer Questions",
+      "description": "Answer the following questions briefly",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Define Big Oh notation and its significance in algorithm analysis.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Algorithm Efficiency",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "What is a Sparse Matrix? Mention one way to represent it in memory.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Arrays",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "List the primary advantages of a Circular Linked List over a Singly Linked List.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Linked lists",
+              "co": 1,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "Define the term 'Abstract Data Type' (ADT) with an example.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Abstract Data Types (ADT)",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "What is a Priority Queue? Name its types.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Queues",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "Explain the concept of 'Tail Recursion'.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Recursion",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "Define collision in Hashing and list any two collision resolution techniques.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Hashing",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "What is a Strictly Binary Tree? Distinguish it from a Complete Binary Tree.",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "Define a Spanning Tree and a Minimum Cost Spanning Tree.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Graphs",
+              "co": 3,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "Identify the time complexity of Binary Search in the best and worst cases.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Searching",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "Section B",
+      "title": "Intermediate Answer Questions",
+      "description": "Answer the following questions in detail",
+      "marks_scheme": "6 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "11",
+              "text": "Explain the Row Major Order representation of a 2D array and derive the general formula for calculating the address of an element A[i][j].",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Arrays",
+              "co": 1,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "12",
+              "text": "Describe the algorithm for evaluating a postfix expression using a stack. Show the step-by-step evaluation for the expression: 5 6 2 + * 12 4 / -.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Stacks",
+              "co": 4,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 13,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "13",
+              "text": "Explain the working of Quick Sort algorithm using the divide and conquer approach. Analyze its best-case and worst-case time complexity.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Sorting",
+              "co": 2,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 14,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "14",
+              "text": "Define a Binary Search Tree (BST). Explain the algorithm for deleting a node from a BST when the node has two children.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 15,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "15",
+              "text": "Compare Breadth First Search (BFS) and Depth First Search (DFS) graph traversal techniques based on their data structures, logic, and complexity.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Graphs",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "Section C",
+      "title": "Long Answer Questions",
+      "description": "Answer the following questions with detailed analysis",
+      "marks_scheme": "10 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 16,
+          "type": "subparts",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Define an AVL Tree. Explain the four types of rotations (LL, RR, LR, RL) used to maintain balance in an AVL tree with suitable diagrams.",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K2"
+            },
+            {
+              "label": "b",
+              "text": "Construct an AVL tree by inserting the following elements in order: 10, 20, 30, 40, 50, 25.",
+              "marks": 4,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 17,
+          "type": "subparts",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Explain Dijkstra’s algorithm for finding the shortest path from a single source to all other vertices in a weighted graph.",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Graphs",
+              "co": 3,
+              "bloom_level": "K2"
+            },
+            {
+              "label": "b",
+              "text": "Compare Prim’s and Kruskal’s algorithms for finding the Minimum Spanning Tree (MST) of a graph.",
+              "marks": 4,
+              "difficulty": "medium",
+              "topic": "Graphs",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 10,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 6,
+      "questionType": "single"
+    },
+    {
+      "section": "C",
+      "questions": 2,
+      "marksEach": 10,
+      "questionType": "single"
+    }
+  ],
+  "difficulty": "Moderate (50%)",
+  "createdBy": "69e3b544010eeba35c84cc5c",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69e4b536766f84e1f7f8b8b0.pdf",
+  "_id": "69e4b536766f84e1f7f8b8b0",
+  "createdAt": "2026-04-19T10:57:58.039Z",
+  "updatedAt": "2026-04-19T10:57:59.959Z",
+  "__v": 0
+}

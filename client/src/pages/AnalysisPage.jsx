@@ -2,9 +2,11 @@ import { useState, useEffect, useRef } from 'react'
 import Navbar from '../components/Navbar'
 import AnalysisCharts from '../components/AnalysisCharts'
 import { useAuth } from '../context/AuthContext'
+import { useToast } from '../components/Toast'
 
 export default function AnalysisPage() {
   const { api } = useAuth()
+  const toast = useToast()
   const fileInputRef = useRef(null)
 
   // Source mode: 'select' (from DB) or 'upload' (PDF)
@@ -99,7 +101,7 @@ export default function AnalysisPage() {
       setUploadedFile(file)
       setAnalyzeError('')
     } else if (file) {
-      setAnalyzeError('Please upload a PDF file only.')
+      toast.error('Please upload a PDF file only.')
     }
   }
 
@@ -137,6 +139,7 @@ export default function AnalysisPage() {
       setAnalyzeError(
         err.response?.data?.error || err.message || 'Failed to analyze the question paper PDF.'
       )
+      toast.error(err.response?.data?.error || err.message || 'Failed to analyze the question paper PDF.')
     } finally {
       setAnalyzing(false)
     }
@@ -174,6 +177,7 @@ export default function AnalysisPage() {
       setValidationError(
         err.response?.data?.error || err.message || 'Validation failed. Please try again.'
       )
+      toast.error(err.response?.data?.error || err.message || 'Validation failed. Please try again.')
     } finally {
       setValidating(false)
     }
