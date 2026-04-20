@@ -5,7 +5,7 @@ export default function PaperPreview({ paper }) {
   const sections = paper.sections || []
   const instructions = paper.instructions || []
 
-  const collegeName = meta.exam || 'University College of Engineering'
+  const collegeName = meta.exam || 'GL Bajaj Institute of Technology and Management'
   const subjectName = meta.subject || paper.subject || 'N/A'
   const subjectCode = meta.subject_code || ''
   const duration = meta.duration || '3 Hours'
