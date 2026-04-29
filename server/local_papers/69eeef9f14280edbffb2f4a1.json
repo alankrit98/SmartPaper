@@ -1,0 +1,360 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "End Semester Examination",
+    "subject": "Database Management System",
+    "subject_code": "BCS501",
+    "duration": "3 Hours",
+    "max_marks": 70
+  },
+  "instructions": [
+    "Attempt all questions from Section A, Section B, and Section C.",
+    "Assume suitable data if any missing.",
+    "Draw neat diagrams wherever necessary to support your analysis."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Analytical Questions",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "A university database administrator changes the internal storage structure from a B-tree to a Hash index to speed up lookups. Analyze which level of data independence ensures that the SQL queries written by the registrar office remain functional without modification.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Database System Concept and Architecture",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "In an ER model for a hospital, a 'Treatment' entity is associated with a 'Doctor' and a 'Patient'. If we decide to convert 'Treatment' from a relationship into an entity type because it has its own attributes like 'Date' and 'Cost', justify the use of Aggregation in this context.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Data Modeling Using the Entity Relationship Model",
+              "co": 1,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Consider a relation R(A, B, C, D). If {A, B} is a Candidate Key, evaluate if {A, B, C} can be considered a Super Key. Provide a logical justification based on the formal definition of keys.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Relational Data Model Concepts",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "A developer attempts to delete a record from a 'Department' table that is referenced by an 'Employee' table via a Foreign Key with 'ON DELETE RESTRICT'. Predict the system's behavior if there are active employees in that department and explain the integrity principle at play.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Integrity Constraints",
+              "co": 1,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "An SQL query uses 'SELECT COUNT(DISTINCT Salary) FROM Employees'. If the table has salaries [100, 200, 200, NULL, 300], determine the output and explain how SQL aggregate functions handle NULL values in this scenario.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Aggregate Functions",
+              "co": 2,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "A relation R(X, Y, Z) satisfies the functional dependency X -> Y. If we decompose R into R1(X, Y) and R2(Y, Z), demonstrate with a counter-example why this decomposition might not be loss-less.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Loss less join decompositions",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "In a banking transaction, T1 transfers money and T2 calculates the total balance of all accounts. If T2 reads an intermediate state of T1 before T1 commits, identify the specific concurrency problem and the ACID property being violated.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Transaction System",
+              "co": 4,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "During a system failure, the recovery manager finds a 'Commit' log record for Transaction T1 but no 'End' record. If the system uses Immediate Update with Checkpoints, evaluate whether T1 needs to be Redone or Undone.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Recovery from Transaction Failures",
+              "co": 4,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "Contrast the behavior of a 'Wait-Die' scheme versus a 'Wound-Wait' scheme for deadlock prevention when an older transaction T1 requests a lock held by a younger transaction T2.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Deadlock Handling",
+              "co": 4,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "In a distributed database, a user executes a query without knowing that the data is partitioned across servers in New York and London. Identify the level of transparency being provided by the Directory System.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Distributed Database",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Application and Design Oriented Questions",
+      "marks_scheme": "6 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Design a PL/SQL procedure that implements a 'Tiered Discount' logic for an e-commerce order table. The procedure must use a Cursor to iterate through orders and update the 'Final_Price' based on 'Order_Value' (10% for >1000, 20% for >5000). Ensure the procedure handles a custom exception if the 'Order_Status' is already 'Cancelled'.",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Procedures in SQL/PL SQL",
+              "co": 2,
+              "bloom_level": "K6"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "A real-estate database has a relation Property(PropID, OwnerID, OwnerName, PropAddress, PropTax). The dependencies are PropID -> PropAddress, PropTax and OwnerID -> OwnerName. Analyze the current normal form of this relation and perform a step-by-step normalization to BCNF, explaining why each step is necessary to eliminate anomalies.",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Data Base Design & Normalization",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 13,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Consider two transactions: T1: R(A), W(A), R(B), W(B) and T2: R(B), W(B), R(A), W(A). Construct an interleaved schedule that results in a Deadlock under the Basic Two-Phase Locking (2PL) protocol. Illustrate the state of the Wait-For-Graph at the point of deadlock and suggest how a Time-Stamping protocol would have avoided this specific deadlock.",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Locking Techniques for Concurrency Control",
+              "co": 4,
+              "bloom_level": "K6"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 14,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "An airline reservation system experiences high read-contention on the 'Flight_Availability' table. Compare the performance impact of using 'Multiple Granularity Locking' (locking individual seats vs. locking the whole flight) versus 'Validation-Based Protocols'. In which scenario would the Validation-Based protocol outperform locking?",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Concurrency Control Techniques",
+              "co": 4,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 15,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "Translate the following Relational Algebra expression into an optimized SQL query: Π_Name (σ_Salary > 50000 (Employee ⨝_DeptID Department)). Additionally, explain how a 'View' could be used to simplify access to this data for the HR department while restricting their access to the 'Home_Address' column in the Employee table.",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Relational Algebra",
+              "co": 2,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Comprehensive Scenario-Based Questions",
+      "marks_scheme": "10 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 16,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Scenario: A Global Logistics Company uses a distributed database. They have an ER schema where 'Shipment' is a weak entity depending on 'Order'. The 'Shipment' entity has a multi-valued attribute 'Transit_Points'. \n(a) Design the reduction of this ER segment into a set of Relational Tables, ensuring all integrity constraints (Primary, Foreign, and Not Null) are explicitly maintained. \n(b) The company wants to ensure that whenever a Shipment's 'Status' is updated to 'Delivered', the corresponding 'Order' status is automatically updated. Design a Row-Level Trigger to implement this logic and discuss the potential 'Recursive Trigger' issues if a similar trigger exists on the 'Order' table.",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Reduction of an ER Diagrams to Tables",
+              "co": 5,
+              "bloom_level": "K6"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 17,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Scenario: A stock trading platform requires absolute data consistency. \n(a) Given the schedule S: R1(X), R2(Y), W1(Y), W2(X), Commit1, Commit2. Analyze if this schedule is Conflict Serializable using a Precedence Graph. If not, identify the conflicting operations. \n(b) To handle frequent crashes during peak hours, the DBA proposes 'Log-Based Recovery with Shadow Paging'. Critique this proposal by comparing it with 'Deferred Update' recovery. Which method provides faster recovery after a crash, and how do 'Checkpoints' specifically reduce the volume of log records to be processed during the REDO phase?",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Testing of Serializability",
+              "co": 4,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 10,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 6,
+      "questionType": "single"
+    },
+    {
+      "section": "C",
+      "questions": 2,
+      "marksEach": 10,
+      "questionType": "single"
+    }
+  ],
+  "difficulty": "Very Hard (100%)",
+  "createdBy": "69e4a92f9895adb47b32cfe8",
+  "pdfUrl": "C:\\Users\\ALANK\\Documents\\GitHub\\SmartPaper\\server\\pdfs\\69eeef9f14280edbffb2f4a1.pdf",
+  "_id": "69eeef9f14280edbffb2f4a1",
+  "createdAt": "2026-04-27T05:09:51.847Z",
+  "updatedAt": "2026-04-27T05:09:55.247Z",
+  "__v": 0
+}

@@ -1,0 +1,360 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "End Semester Examination",
+    "subject": "Web Technology",
+    "subject_code": "BCS502",
+    "duration": "3 Hours",
+    "max_marks": 70
+  },
+  "instructions": [
+    "Attempt all questions.",
+    "Each question carries marks as indicated in the respective sections.",
+    "Draw neat diagrams where necessary."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Define the term 'Data Independence' in the context of web development strategies.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Introduction and Web Development Strategies",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "List any four attributes of the <table> tag in HTML.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "HTML: List, Table, Images, Frames, forms",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "What is the primary purpose of a Document Type Definition (DTD) in XML?",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "XML: Document type definition (DTD)",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "Define the components of the CSS Box Model.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Box Model (Introduction, Border properties, Padding Properties, Margin properties)",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "Explain the use of the 'float' property in CSS styling.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Floating",
+              "co": 2,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "Define the role of the 'InetAddress' class in Java networking.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "InetAddress",
+              "co": 3,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "What is a 'Stateless Session Bean' in Enterprise Java Beans?",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Stateless Session bean",
+              "co": 4,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "Define the REPL terminal in the context of Node.js environment setup.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "REPL Terminal",
+              "co": 4,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "List any four implicit objects available in Java Server Pages (JSP).",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Implicit Objects",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "Explain the purpose of the 'ServletConfig' interface in Servlet architecture.",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Servlet Overview and Architecture",
+              "co": 5,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Medium Answer Questions",
+      "marks_scheme": "6 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "11",
+              "text": "Compare and contrast the DOM and SAX processors used for parsing XML documents.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Using XML Processors: DOM and SAX",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "12",
+              "text": "Explain the various CSS positioning techniques, including Static, Relative, Absolute, and Fixed positioning.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Positioning",
+              "co": 2,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 13,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "13",
+              "text": "Describe the architecture of the Express framework in Node.js and explain its middleware concept.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Express Framework",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 14,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "14",
+              "text": "Explain the life cycle of a Servlet with the help of a diagram, highlighting the init(), service(), and destroy() methods.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Interface Servlet and the Servlet Life Cycle",
+              "co": 5,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 15,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "15",
+              "text": "Define AJAX and explain how the XMLHttpRequest object is used to perform asynchronous communication in web applications.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "introduction to AJAX",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Long Answer Questions",
+      "marks_scheme": "10 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 16,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "16",
+              "text": "Compare the mechanisms of Session Tracking using Cookies and HttpSession in Java Servlets. Discuss the advantages and disadvantages of each approach.",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Session Tracking, Cookies, Session Tracking with Http Session",
+              "co": 5,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 17,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "17",
+              "text": "Explain the process of creating a RESTful API using Node.js. Describe how to perform basic CRUD operations (Insert, Update, Delete, Query) on a MongoDB database collection.",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Restful API, MongoDB Create Database, Create Collection, Insert, delete, update, join, sort, query",
+              "co": 4,
+              "bloom_level": "K6"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 10,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 6,
+      "questionType": "single"
+    },
+    {
+      "section": "C",
+      "questions": 2,
+      "marksEach": 10,
+      "questionType": "single"
+    }
+  ],
+  "difficulty": "Moderate (50%)",
+  "createdBy": "69e4a92f9895adb47b32cfe8",
+  "pdfUrl": "C:\\Users\\ALANK\\Documents\\GitHub\\SmartPaper\\server\\pdfs\\69eee37d14280edbffb2f45d.pdf",
+  "_id": "69eee37d14280edbffb2f45d",
+  "createdAt": "2026-04-27T04:18:05.758Z",
+  "updatedAt": "2026-04-27T04:18:09.746Z",
+  "__v": 0
+}

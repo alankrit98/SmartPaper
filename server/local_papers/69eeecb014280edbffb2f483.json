@@ -1,0 +1,360 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "End Semester Examinations",
+    "subject": "Web Technology",
+    "subject_code": "BCS502",
+    "duration": "3 Hours",
+    "max_marks": 70
+  },
+  "instructions": [
+    "Attempt all questions.",
+    "Each question carries marks as indicated in its section.",
+    "Support your answers with diagrams where necessary."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Define the term 'Data Independence' in the context of web architectures.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Introduction and Web Development Strategies",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "List the four basic components of the CSS Box Model.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Box Model",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Explain the purpose of the 'action' attribute in an HTML form.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Web Page Designing: HTML",
+              "co": 1,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "What is the difference between an XML DTD and an XML Schema?",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "XML",
+              "co": 1,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "Define the role of the 'Callback' concept in Node.js.",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Node.js",
+              "co": 4,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "List any two implicit objects available in JSP.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Java Server Pages (JSP)",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "State the difference between GET and POST methods in Servlets.",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Servlets",
+              "co": 5,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "Define a 'Stateful Session Bean' in EJB.",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Enterprise Java Bean",
+              "co": 4,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "What is the function of the 'InetAddress' class in Java Networking?",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "Networking",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "Explain the use of the 'NPM' tool in Node.js environment.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Node.js",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Medium Answer Questions",
+      "marks_scheme": "6 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Explain the different types of CSS selectors (ID, Class, and Attribute) with appropriate syntax and examples.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "CSS",
+              "co": 2,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "Describe the Servlet Life Cycle in detail, explaining each phase from initialization to destruction.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Servlets",
+              "co": 5,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 13,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Compare the DOM and SAX XML processors based on their working mechanism, advantages, and disadvantages.",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Using XML Processors: DOM and SAX",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 14,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "Explain the concept of AJAX and how it enables asynchronous communication between the client and server.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Introduction to AJAX",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 15,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "Outline the steps to create a simple RESTful API using the Express framework in Node.js.",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Node.js",
+              "co": 4,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Detailed Answer Questions",
+      "marks_scheme": "10 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 16,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Explain the various session tracking techniques used in web applications, focusing specifically on Cookies and HttpSession in Java Servlets.",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Session Tracking",
+              "co": 5,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 17,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "Describe the architecture of Node.js with MongoDB. Explain how to perform CRUD (Create, Read, Update, Delete) operations using the MongoDB driver in a Node.js application.",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Node.js with MongoDB",
+              "co": 4,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 10,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 6,
+      "questionType": "single"
+    },
+    {
+      "section": "C",
+      "questions": 2,
+      "marksEach": 10,
+      "questionType": "single"
+    }
+  ],
+  "difficulty": "Moderate (50%)",
+  "createdBy": "69e4a92f9895adb47b32cfe8",
+  "pdfUrl": "C:\\Users\\ALANK\\Documents\\GitHub\\SmartPaper\\server\\pdfs\\69eeecb014280edbffb2f483.pdf",
+  "_id": "69eeecb014280edbffb2f483",
+  "createdAt": "2026-04-27T04:57:20.331Z",
+  "updatedAt": "2026-04-27T04:57:23.514Z",
+  "__v": 0
+}
