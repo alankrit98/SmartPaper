@@ -1,0 +1,461 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "End Semester Examination",
+    "subject": "Discrete Structures & Theory of Logic",
+    "subject_code": "BCS303",
+    "duration": "3 Hours",
+    "max_marks": 80
+  },
+  "instructions": [
+    "Attempt all questions.",
+    "Each section has specific instructions regarding the number of questions to be attempted.",
+    "Assume suitable data if necessary."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions",
+      "marks_scheme": "10 questions x 2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "What is a subset?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Set Theory",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "What is a Hasse Diagram in the context of Partial Orders and Ordered Sets?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "POSET & Lattices",
+              "co": 1,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "A bijective function is a one-to-one correspondence between a set of distinct elements, where each element in the domain maps to exactly one element in the range, and every element in the range is mapped to by exactly one element in the domain.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Functions",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "Boolean Algebra axioms:",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Boolean Algebra",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "What is a logical fallacy?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Theory of Logics",
+              "co": 3,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "What quantifier precedes the noun in a statement is the type of quantification used?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Theory of Logics",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "What is a subset that is closed under the group operation?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Algebraic Structures",
+              "co": 4,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "What is Homomorphism",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Algebraic Structures",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "What is a bipartite graph?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Graphs",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "What is the Pigeonhole Principle?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Combinatorics",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Long Answer Questions",
+      "marks_scheme": "5 questions x 5 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "choice_group",
+          "marks": 5,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "{1, 2, 3, 5, 6, 10, 15, 30}",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "POSET & Lattices"
+            },
+            {
+              "label": "OR_2",
+              "text": "What is a Distributive Lattice?",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "POSET & Lattices"
+            }
+          ],
+          "subquestions": []
+        },
+        {
+          "question_id": 12,
+          "type": "choice_group",
+          "marks": 5,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "Create a Karnaugh Map with columns representing the variables x, y, z, w and rows representing the output values.",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Boolean Algebra"
+            },
+            {
+              "label": "OR_2",
+              "text": "What is the growth rate of the function f(x) = x^2 and g(x) = 2^x as x approaches infinity?",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Functions"
+            }
+          ],
+          "subquestions": []
+        },
+        {
+          "question_id": 13,
+          "type": "choice_group",
+          "marks": 5,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "What is the Theorem of Deduction for statement calculus and explain the use of Modus Tollens?",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Theory of Logics"
+            },
+            {
+              "label": "OR_2",
+              "text": "P (S (H (X)))",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Theory of Logics"
+            }
+          ],
+          "subquestions": []
+        },
+        {
+          "question_id": 14,
+          "type": "choice_group",
+          "marks": 5,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "What is the Lagrange's Theorem for finite groups?",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Algebraic Structures"
+            },
+            {
+              "label": "OR_2",
+              "text": "What is a cyclic Group?",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Algebraic Structures"
+            }
+          ],
+          "subquestions": []
+        },
+        {
+          "question_id": 15,
+          "type": "choice_group",
+          "marks": 5,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "What is the difference between Euler paths and Hamiltonian paths?",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Graphs"
+            },
+            {
+              "label": "OR_2",
+              "text": "What is Graph Isomorphism?",
+              "marks": 5,
+              "difficulty": "hard",
+              "topic": "Graphs"
+            }
+          ],
+          "subquestions": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Descriptive Questions",
+      "marks_scheme": "5 questions x 7 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 16,
+          "type": "choice_group",
+          "marks": 7,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "What are Lattices?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "POSET & Lattices"
+            },
+            {
+              "label": "OR_2",
+              "text": "What is the relation R defined as R(x,y) = {z | x ∧ y}, where z is a number?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Set Theory & Relations"
+            }
+          ],
+          "subquestions": []
+        },
+        {
+          "question_id": 17,
+          "type": "choice_group",
+          "marks": 7,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "What type of function is the one that is inversely proportional to another function?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Functions"
+            },
+            {
+              "label": "OR_2",
+              "text": "Theorems of Boolean Algebra:",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Boolean Algebra"
+            }
+          ],
+          "subquestions": []
+        },
+        {
+          "question_id": 18,
+          "type": "choice_group",
+          "marks": 7,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "What is the relationship between Satisfiability and Contradiction in Boolean logic?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Theory of Logics"
+            },
+            {
+              "label": "OR_2",
+              "text": "What is the Inference Theory of Predicate Logic?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Theory of Logics"
+            }
+          ],
+          "subquestions": []
+        },
+        {
+          "question_id": 19,
+          "type": "choice_group",
+          "marks": 7,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "What are Rings and Fields?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Algebraic Structures"
+            },
+            {
+              "label": "OR_2",
+              "text": "Subgroups and Cosets",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Algebraic Structures"
+            }
+          ],
+          "subquestions": []
+        },
+        {
+          "question_id": 20,
+          "type": "choice_group",
+          "marks": 7,
+          "options": [
+            {
+              "label": "OR_1",
+              "text": "What is a planar graph?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Graphs"
+            },
+            {
+              "label": "OR_2",
+              "text": "Explain various counting techniques in Combinatorics. Illustrate the application of the Pigeonhole Principle in solving discrete mathematical problems.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Combinatorics"
+            }
+          ],
+          "subquestions": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 10,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 5,
+      "questionType": "choice_group"
+    },
+    {
+      "section": "C",
+      "questions": 5,
+      "marksEach": 7,
+      "questionType": "choice_group"
+    }
+  ],
+  "difficulty": "Mixed",
+  "createdBy": "69e3b544010eeba35c84cc5c",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69f18558518dfe13386ecac9.pdf",
+  "_id": "69f18558518dfe13386ecac9",
+  "createdAt": "2026-04-29T04:13:12.449Z",
+  "updatedAt": "2026-04-29T04:13:14.559Z",
+  "__v": 0
+}

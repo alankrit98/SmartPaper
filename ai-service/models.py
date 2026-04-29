@@ -18,6 +18,8 @@ class PatternItem(BaseModel):
     marksEach: int = Field(..., ge=1, description="Marks per question")
     questionType: Optional[str] = Field(default="single", description="single | subparts | choice_group")
     attemptRule: Optional[str] = Field(default=None, description="e.g. 'Attempt all questions'")
+    difficulty: Optional[str] = Field(default=None, description="Section-level difficulty override: easy | moderate | hard (overrides global)")
+    description: Optional[str] = Field(default=None, description="Custom section header notes / instructions for students")
 
 
 class GeneratePaperRequest(BaseModel):

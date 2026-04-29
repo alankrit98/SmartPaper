@@ -1,0 +1,414 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "End Semester Examination",
+    "subject": "Discrete Structures & Theory of Logic",
+    "subject_code": "BCS303",
+    "duration": "3 Hours",
+    "max_marks": 84
+  },
+  "instructions": [
+    "Attempt all questions.",
+    "Show all necessary steps in mathematical derivations and proofs.",
+    "Hasse diagrams and graph representations must be clear and labeled."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions",
+      "header_notes": "Attempt all questions in this section.",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Define a Modular Lattice and provide its necessary condition.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Lattices",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "Define the Absorption Law as it applies to Boolean Algebra.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Boolean Algebra",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Define a Tautology in the context of Propositional Logic.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Theory of Logics",
+              "co": 3,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "Write the contrapositive of the logical statement: 'If it rains, then the ground is wet'.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Theory of Logics",
+              "co": 3,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "Define a Cyclic Group and state its generator property.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Algebraic Structures",
+              "co": 4,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "Define Isomorphism between two simple graphs.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Graphs",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "Define a Bipartite Graph and state the condition for a graph to be bipartite.",
+              "marks": 2,
+              "difficulty": "hard",
+              "topic": "Graphs",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Long Answer Questions",
+      "header_notes": "Attempt all questions in this section.",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "Explain the properties of a Complemented Lattice and provide a Hasse diagram example of a lattice that is complemented but not distributed.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "POSET & Lattices",
+              "co": 1,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "Simplify the Boolean function F(A, B, C, D) = Σ(0, 1, 2, 5, 8, 9, 10) using a Karnaugh map and draw the resulting logic circuit.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Boolean Algebra",
+              "co": 2,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "Explain the Theory of Inference for Predicate Logic specifically focusing on the rules of Universal Generalization and Existential Specification.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Theory of Logics",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "11",
+              "text": "State and prove Lagrange's Theorem regarding the order of subgroups in a finite group.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Algebraic Structures",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "12",
+              "text": "Compare Euler paths and Hamiltonian paths. Provide a graph that contains a Hamiltonian cycle but no Euler circuit.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Graphs",
+              "co": 5,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Detailed Answer Choice Questions",
+      "header_notes": "Attempt one part (a or b) from each question.",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 13,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Explain the recursive definition of relations and define the composition of two relations with a numerical example.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Set Theory& Relations",
+              "co": 1,
+              "bloom_level": "K2"
+            },
+            {
+              "label": "b",
+              "text": "Construct the Hasse diagram for the 'divides' relation on the set A = {1, 2, 3, 4, 6, 12} and determine if the resulting POSET is a lattice.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "POSET & Lattices",
+              "co": 1,
+              "bloom_level": "K3"
+            }
+          ]
+        },
+        {
+          "question_id": 14,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Classify functions based on their properties (Injection, Surjection, and Bijection) and provide mathematical proofs for each classification using specific functions.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Functions",
+              "co": 2,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Explain the growth of functions using Big-Oh (O) and Big-Omega (Ω) notations. Formally prove that f(n) = 3n^2 + 4n + 5 is O(n^2).",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Functions",
+              "co": 2,
+              "bloom_level": "K2"
+            }
+          ]
+        },
+        {
+          "question_id": 15,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Analyse the validity of the following argument using truth tables: 'If I study hard, I will pass the exam. I did not pass the exam. Therefore, I did not study hard.'",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Theory of Logics",
+              "co": 3,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Explain the procedure to convert a logical formula into its Prenex Normal Form (PNF) and provide a step-by-step example.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Theory of Logics",
+              "co": 3,
+              "bloom_level": "K3"
+            }
+          ]
+        },
+        {
+          "question_id": 16,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Define a Ring and explain the elementary properties of Fields. Contrast a Ring with a Field using their respective axioms.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Algebraic Structures",
+              "co": 4,
+              "bloom_level": "K2"
+            },
+            {
+              "label": "b",
+              "text": "Explain the concepts of Normal Subgroups and Group Homomorphisms. Prove that the kernel of a homomorphism is a normal subgroup.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Algebraic Structures",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ]
+        },
+        {
+          "question_id": 17,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Explain the concept of Planar graphs and prove Euler's formula (V - E + F = 2) for any connected planar graph.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Graphs",
+              "co": 5,
+              "bloom_level": "K5"
+            },
+            {
+              "label": "b",
+              "text": "Explain the principles of graph coloring and determine the chromatic number of a Peterson graph, justifying your answer.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Graphs",
+              "co": 5,
+              "bloom_level": "K3"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 7,
+      "marksEach": 2,
+      "questionType": "single",
+      "difficulty": "",
+      "description": ""
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 7,
+      "questionType": "single",
+      "difficulty": "",
+      "description": ""
+    },
+    {
+      "section": "C",
+      "questions": 5,
+      "marksEach": 7,
+      "questionType": "choice_group",
+      "difficulty": "",
+      "description": ""
+    }
+  ],
+  "difficulty": "Hard (75%)",
+  "createdBy": "69e3b544010eeba35c84cc5c",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69f19a6e8a231279ab9617f8.pdf",
+  "_id": "69f19a6e8a231279ab9617f8",
+  "createdAt": "2026-04-29T05:43:10.956Z",
+  "updatedAt": "2026-04-29T05:43:13.134Z",
+  "__v": 0
+}

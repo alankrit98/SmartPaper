@@ -91,7 +91,7 @@ const saveGeneratedQuestionsAsync = (paper) => {
  */
 const generatePaper = async (req, res, next) => {
   try {
-    const { subject, difficulty, exam, subject_code, duration, style, paperName, topics } = req.body;
+    const { subject, difficulty, exam, subject_code, duration, style, paperName, topics, max_marks } = req.body;
     let pattern;
     let instructions;
 
@@ -130,10 +130,13 @@ const generatePaper = async (req, res, next) => {
     }
 
     // Calculate total marks from pattern
-    const totalMarks = pattern.reduce(
+    const calculatedMarks = pattern.reduce(
       (sum, s) => sum + (s.questions || 0) * (s.marksEach || 0),
       0
     );
+
+    // Use user-provided max_marks if available, else fall back to calculated
+    const totalMarks = max_marks ? parseInt(max_marks, 10) || calculatedMarks : calculatedMarks;
 
     if (totalMarks <= 0) {
       return res.status(400).json({
@@ -167,19 +170,64 @@ const generatePaper = async (req, res, next) => {
       pdfFilename: req.file ? req.file.originalname : null,
     });
 
+    // ── Step 2.5: Normalize choice_group questions ──────────────────
+    // The LLM sometimes puts choice data in subquestions instead of options.
+    const normalizedSections = (aiResponse.sections || []).map((section) => {
+      const normalizedQuestions = (section.questions || []).map((q) => {
+        if (q.type === "choice_group") {
+          // If options are missing or empty but subquestions have data, move them
+          const hasValidOptions =
+            Array.isArray(q.options) &&
+            q.options.length > 0 &&
+            q.options[0]?.text;
+          const hasSubquestions =
+            Array.isArray(q.subquestions) &&
+            q.subquestions.length > 0 &&
+            q.subquestions[0]?.text;
+
+          if (!hasValidOptions && hasSubquestions) {
+            // Move subquestions → options
+            q.options = q.subquestions.map((sq) => ({
+              label: sq.label || "",
+              text: sq.text || "",
+              marks: sq.marks || q.marks || 0,
+              difficulty: sq.difficulty || "",
+              topic: sq.topic || "",
+              co: sq.co,
+              bloom_level: sq.bloom_level,
+            }));
+            q.subquestions = [];
+          }
+
+          // Clean up any empty option objects
+          if (Array.isArray(q.options)) {
+            q.options = q.options.filter(
+              (opt) => opt && (opt.text || opt.label)
+            );
+          }
+        }
+        return q;
+      });
+      return { ...section, questions: normalizedQuestions };
+    });
+
     // ── Step 3: Save paper to MongoDB ────────────────────────────
+    // Build metadata — always override max_marks with user-provided value
+    const paperMetadata = aiResponse.metadata || {
+      subject,
+      exam: exam || "Examination",
+      subject_code: subject_code || "",
+      duration: duration || "3 Hours",
+      style: style || "direct",
+    };
+    // Ensure user-provided max_marks is always used
+    paperMetadata.max_marks = totalMarks;
+
     const paper = await QuestionPaper.create({
       name: paperName || "",
-      metadata: aiResponse.metadata || {
-        subject,
-        max_marks: totalMarks,
-        exam: exam || "Examination",
-        subject_code: subject_code || "",
-        duration: duration || "3 Hours",
-        style: style || "direct",
-      },
+      metadata: paperMetadata,
       instructions: aiResponse.instructions || [],
-      sections: aiResponse.sections || [],
+      sections: normalizedSections,
       pattern,
       difficulty,
       createdBy: req.user._id,
@@ -267,26 +315,65 @@ const getPaperPDF = async (req, res, next) => {
         .json({ success: false, error: "Paper not found." });
     }
 
-    if (!paper.pdfUrl) {
-      return res
-        .status(404)
-        .json({ success: false, error: "PDF has not been generated." });
+    const filePath = getPDFPath(paper._id.toString());
+
+    // Auto-regenerate PDF if missing or empty on disk
+    let needsRegeneration = false;
+    if (!paper.pdfUrl || !fs.existsSync(filePath)) {
+      needsRegeneration = true;
+    } else {
+      const stats = fs.statSync(filePath);
+      if (stats.size === 0) {
+        needsRegeneration = true;
+      }
     }
 
-    const filePath = getPDFPath(paper._id.toString());
+    if (needsRegeneration) {
+      logger.info(`PDF missing or empty for paper ${paper._id}, regenerating...`);
+      try {
+        const newPath = await generatePDF(paper);
+        paper.pdfUrl = newPath;
+        await paper.save();
+        logger.info(`PDF regenerated: ${newPath}`);
+      } catch (regenErr) {
+        logger.error(`PDF regeneration failed: ${regenErr.message}`);
+        return res
+          .status(500)
+          .json({ success: false, error: "PDF generation failed. Please try again later." });
+      }
+    }
+
+    // Verify the file now exists and is non-empty
     if (!fs.existsSync(filePath)) {
-      logger.error(`PDF file missing on disk: ${filePath}`);
+      logger.error(`PDF file still missing after regeneration: ${filePath}`);
       return res
         .status(404)
         .json({ success: false, error: "PDF file not found on server." });
     }
 
+    const pdfBuffer = fs.readFileSync(filePath);
+
+    if (pdfBuffer.length === 0) {
+      logger.error(`PDF file is zero bytes: ${filePath}`);
+      return res
+        .status(500)
+        .json({ success: false, error: "PDF file is empty. Please try regenerating the paper." });
+    }
+
     const subjectName = paper.metadata?.subject || "paper";
     const filename = `${subjectName.replace(/\s+/g, "_")}_paper_${paper._id}.pdf`;
-    res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
 
-    return res.download(filePath, filename);
+    logger.info(`Serving PDF: ${filePath} (${pdfBuffer.length} bytes)`);
+
+    // Use Express res.set() + res.send() instead of res.writeHead() + res.end()
+    // to avoid bypassing middleware (compression, CORS, etc.)
+    res.set({
+      "Content-Type": "application/pdf",
+      "Content-Length": pdfBuffer.length,
+      "Content-Disposition": `attachment; filename="${filename}"`,
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+    });
+    res.status(200).send(pdfBuffer);
   } catch (error) {
     next(error);
   }

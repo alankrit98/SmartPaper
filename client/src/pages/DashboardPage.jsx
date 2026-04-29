@@ -51,7 +51,20 @@ export default function DashboardPage() {
       const response = await api.get(`/papers/${paperId}/pdf`, {
         responseType: 'blob',
       })
-      const url = window.URL.createObjectURL(new Blob([response.data]))
+
+      // If the server returned JSON error inside a blob, decode it
+      if (response.data?.type === 'application/json') {
+        const text = await response.data.text()
+        const json = JSON.parse(text)
+        throw new Error(json.error || 'Failed to download PDF.')
+      }
+
+      if (!response.data || response.data.size === 0) {
+        throw new Error('PDF file is empty.')
+      }
+
+      const blob = new Blob([response.data], { type: 'application/pdf' })
+      const url = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
       link.setAttribute('download', `${subject.replace(/\s+/g, '_')}_Question_Paper.pdf`)
@@ -60,7 +73,17 @@ export default function DashboardPage() {
       link.remove()
       window.URL.revokeObjectURL(url)
     } catch (err) {
-      toast.error('Failed to download PDF. The file might not be available.')
+      let msg = 'Failed to download PDF. The file might not be available.'
+      if (err.response?.data instanceof Blob) {
+        try {
+          const text = await err.response.data.text()
+          const json = JSON.parse(text)
+          msg = json.error || msg
+        } catch { /* ignore parse errors */ }
+      } else if (err.message) {
+        msg = err.message
+      }
+      toast.error(msg)
     } finally {
       setDownloadingId(null)
     }

@@ -348,7 +348,7 @@ select.input-field {
   background: var(--success-bg);
 }
 
-/* ── Paper Preview Styles ──────────────────────────────── */
+/* ── Paper Preview Styles — Tabular Format ─────────────────── */
 .paper-preview {
   background: #fff;
   border: 1px solid #e2e8f0;
@@ -365,13 +365,13 @@ select.input-field {
   text-align: center;
   border-bottom: 2px solid #000;
   padding-bottom: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .paper-preview .paper-header h1 {
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
@@ -379,26 +379,29 @@ select.input-field {
 .paper-preview .paper-header h2 {
   font-size: 16px;
   font-weight: 400;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .paper-preview .paper-header h3 {
-  font-size: 13px;
-  font-weight: 400;
-  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
 }
 
 .paper-preview .paper-meta {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-size: 13px;
+  line-height: 1.7;
+  border-bottom: 1px solid #999;
+  padding-bottom: 8px;
 }
 
 .paper-preview .paper-instructions {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   padding: 10px 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   background: #fafafa;
   border-radius: 4px;
   font-size: 12px;
@@ -410,85 +413,101 @@ select.input-field {
 }
 
 .paper-preview .paper-section {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
-.paper-preview .section-title {
-  font-size: 15px;
-  font-weight: 700;
-  text-decoration: underline;
-  margin-bottom: 4px;
+.paper-preview .section-title-bar {
+  font-size: 14px;
+  text-align: center;
+  padding: 5px 0;
+  background: #f0f0f0;
+  border: 1px solid #999;
+  border-bottom: none;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.paper-preview .section-notes-preview {
+  font-size: 12px;
+  color: #333;
+  padding: 6px 10px;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  background: #fafafa;
+  font-style: italic;
+  line-height: 1.5;
 }
 
 .paper-preview .section-info {
   font-size: 12px;
-  color: #555;
+  color: #444;
   font-style: italic;
-  margin-bottom: 12px;
+  text-align: center;
+  padding: 4px 0;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
 }
 
-.paper-preview .question-block {
-  margin-bottom: 14px;
-  padding-left: 4px;
-}
-
-.paper-preview .q-header {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.paper-preview .q-num {
-  font-weight: 700;
-  min-width: 30px;
-}
-
-.paper-preview .q-text {
-  flex: 1;
-}
-
-.paper-preview .q-marks {
-  font-weight: 700;
-  font-size: 12px;
-  color: #333;
-  white-space: nowrap;
-}
-
-.paper-preview .subparts {
-  padding-left: 40px;
-  margin-top: 6px;
-  list-style-type: lower-alpha;
-}
-
-.paper-preview .subparts li {
-  margin-bottom: 6px;
-}
-
-.paper-preview .tag {
-  display: inline-block;
-  font-size: 10px;
-  padding: 1px 6px;
-  border-radius: 3px;
-  margin-left: 6px;
-  font-family: 'Inter', sans-serif;
-}
-
-.paper-preview .tag-bloom {
-  background: #e3f2fd;
-  color: #1565c0;
-}
-
-.paper-preview .tag-co {
-  background: #e8f5e9;
-  color: #2e7d32;
-}
-
-.paper-preview .or-label {
-  margin: 8px 0 6px 30px;
-  font-weight: 700;
-  font-style: italic;
-  color: #555;
+.paper-preview .paper-table {
+  width: 100%;
+  border-collapse: collapse;
   font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.paper-preview .paper-table th {
+  background: #e8e8e8;
+  font-weight: 700;
+  padding: 6px 8px;
+  border: 1px solid #999;
+  text-align: center;
+  font-size: 12px;
+}
+
+.paper-preview .paper-table td {
+  padding: 6px 8px;
+  border: 1px solid #bbb;
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.paper-preview .col-qno {
+  width: 50px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.paper-preview .col-question {
+  text-align: left;
+}
+
+.paper-preview .col-marks {
+  width: 50px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.paper-preview .col-co {
+  width: 50px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.paper-preview .sub-label {
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.paper-preview .or-row td {
+  border-top: 1px dashed #999;
+  border-bottom: 1px dashed #999;
+}
+
+.paper-preview .or-cell {
+  text-align: center;
+  font-style: italic;
+  padding: 3px 0;
+  color: #555;
 }
 
 .paper-preview .paper-footer {
