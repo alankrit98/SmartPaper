@@ -68,6 +68,7 @@ export default function GeneratorPage() {
   const [difficulty, setDifficulty] = useState('50') // 1 to 100 percentage
   const [questionStyle, setQuestionStyle] = useState('direct') // direct vs twisted
   const [pattern, setPattern] = useState(DEFAULT_PATTERN)
+  const [maxMarksOverride, setMaxMarksOverride] = useState('') // empty means auto-calculate
   const [syllabusFile, setSyllabusFile] = useState(null)
   const [dragOver, setDragOver] = useState(false)
   const [detectedSubjects, setDetectedSubjects] = useState([])
@@ -109,7 +110,8 @@ export default function GeneratorPage() {
     return () => clearInterval(interval);
   }, [loading]);
 
-  const totalMarks = pattern.reduce((sum, s) => sum + s.questions * s.marksEach, 0)
+  const calculatedMarks = pattern.reduce((sum, s) => sum + s.questions * s.marksEach, 0)
+  const totalMarks = maxMarksOverride ? parseInt(maxMarksOverride, 10) || calculatedMarks : calculatedMarks
 
   const updatePattern = (index, field, value) => {
     const newPattern = [...pattern]
@@ -343,6 +345,7 @@ export default function GeneratorPage() {
       if (examName) formData.append('exam', examName)
       if (subjectCode) formData.append('subject_code', subjectCode)
       if (duration) formData.append('duration', duration)
+      formData.append('max_marks', totalMarks.toString())
       formData.append('subject', subject)
       
       // Determine descriptive difficulty string
@@ -401,7 +404,21 @@ export default function GeneratorPage() {
       const response = await api.get(`/papers/${paperId}/pdf`, {
         responseType: 'blob',
       })
-      const url = window.URL.createObjectURL(new Blob([response.data]))
+
+      // If the server returned JSON error inside a blob, decode it
+      if (response.data?.type === 'application/json') {
+        const text = await response.data.text()
+        const json = JSON.parse(text)
+        throw new Error(json.error || 'Failed to download PDF.')
+      }
+
+      // Validate we got data
+      if (!response.data || response.data.size === 0) {
+        throw new Error('PDF file is empty. Please try regenerating the paper.')
+      }
+
+      const blob = new Blob([response.data], { type: 'application/pdf' })
+      const url = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
       link.setAttribute('download', `${subject.replace(/\s+/g, '_')}_Question_Paper.pdf`)
@@ -410,7 +427,17 @@ export default function GeneratorPage() {
       link.remove()
       window.URL.revokeObjectURL(url)
     } catch (err) {
-      toast.error('Failed to download PDF. Please try again.')
+      let msg = 'Failed to download PDF. Please try again.'
+      if (err.response?.data instanceof Blob) {
+        try {
+          const text = await err.response.data.text()
+          const json = JSON.parse(text)
+          msg = json.error || msg
+        } catch { /* ignore parse errors */ }
+      } else if (err.message) {
+        msg = err.message
+      }
+      toast.error(msg)
     } finally {
       setDownloadingPDF(false)
     }
@@ -858,18 +885,51 @@ export default function GeneratorPage() {
 
               {/* Exam Pattern */}
               <div style={{ marginBottom: '28px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
                   <label className="form-label" style={{ margin: 0 }}>Exam Pattern Configuration</label>
-                  <span style={{
-                    padding: '4px 12px',
-                    borderRadius: '20px',
-                    fontSize: '0.8rem',
-                    fontWeight: 600,
-                    background: 'linear-gradient(135deg, var(--gradient-start), var(--gradient-end))',
-                    color: 'white',
-                  }}>
-                    Total: {totalMarks} marks
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span style={{
+                      fontSize: '0.8rem',
+                      color: 'var(--text-muted)',
+                      fontWeight: 500,
+                    }}>
+                      Pattern total: {calculatedMarks}m
+                    </span>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: '4px 12px',
+                      borderRadius: '20px',
+                      background: 'linear-gradient(135deg, var(--gradient-start), var(--gradient-end))',
+                      color: 'white',
+                      fontSize: '0.8rem',
+                      fontWeight: 600,
+                    }}>
+                      Max Marks:
+                      <input
+                        type="number"
+                        value={maxMarksOverride}
+                        onChange={(e) => setMaxMarksOverride(e.target.value)}
+                        placeholder={calculatedMarks}
+                        disabled={loading}
+                        min={1}
+                        max={500}
+                        style={{
+                          width: '56px',
+                          padding: '2px 6px',
+                          borderRadius: '6px',
+                          border: 'none',
+                          background: 'rgba(255,255,255,0.25)',
+                          color: 'white',
+                          fontSize: '0.85rem',
+                          fontWeight: 700,
+                          textAlign: 'center',
+                          outline: 'none',
+                        }}
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>

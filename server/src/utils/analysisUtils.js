@@ -17,8 +17,12 @@ function collectLeafItems(paper) {
       } else if (q.type === "subparts" && q.subquestions?.length > 0) {
         items.push(...q.subquestions);
       } else if (q.type === "choice_group") {
-        if (q.subquestions?.length > 0) {
-          items.push(...q.subquestions);
+        // Student picks ONE option — only count the first for analysis.
+        // Data lives in options (preferred) or subquestions (legacy).
+        if (q.options?.length > 0) {
+          items.push(q.options[0]);
+        } else if (q.subquestions?.length > 0) {
+          items.push(q.subquestions[0]);
         }
       }
     }

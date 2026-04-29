@@ -42,44 +42,42 @@ const renderQuestionRows = (q) => {
       </tr>`;
     });
   } else if (q.type === "choice_group") {
-    // Main question subparts
-    if (q.subquestions?.length > 0) {
-      q.subquestions.forEach((sq, idx) => {
-        html += `<tr>
-          <td class="col-qno">${idx === 0 ? q.question_id : ""}</td>
-          <td class="col-question"><span class="sub-label">(${sq.label || String.fromCharCode(97 + idx)})</span> ${sq.text}</td>
-          <td class="col-marks">${sq.marks}</td>
-          <td class="col-co">${sq.co ? `CO${sq.co}` : "-"}</td>
-        </tr>`;
-      });
-    }
-    // OR divider + options
-    if (q.options?.length > 0) {
-      html += `<tr class="or-row">
-        <td class="col-qno"></td>
-        <td colspan="3" class="or-cell"><strong>OR</strong></td>
-      </tr>`;
-      q.options.forEach((opt, idx) => {
-        html += `<tr>
+    // Use options as primary source; fall back to subquestions
+    const items = (q.options?.length > 0) ? q.options : (q.subquestions || []);
+    items.forEach((opt, idx) => {
+      // OR divider between options
+      if (idx > 0) {
+        html += `<tr class="or-row">
           <td class="col-qno"></td>
-          <td class="col-question"><span class="sub-label">(${opt.label || String.fromCharCode(97 + idx)})</span> ${opt.text}</td>
-          <td class="col-marks">${opt.marks}</td>
-          <td class="col-co">-</td>
+          <td colspan="3" class="or-cell"><strong>OR</strong></td>
         </tr>`;
-      });
-    }
+      }
+      html += `<tr>
+        <td class="col-qno">${idx === 0 ? q.question_id : ""}</td>
+        <td class="col-question"><span class="sub-label">(${opt.label || String.fromCharCode(97 + idx)})</span> ${opt.text}</td>
+        <td class="col-marks">${opt.marks || q.marks}</td>
+        <td class="col-co">${opt.co ? `CO${opt.co}` : "-"}</td>
+      </tr>`;
+    });
   }
 
   return html;
 };
 
 /**
- * Build the analysis charts HTML for the PDF (pure HTML/CSS bars — no JS canvas).
+ * Build the analysis charts HTML for the PDF.
+ * Bloom's → CSS pie chart (conic-gradient), CO → horizontal bar chart.
+ * No summary tables — graphs only.
  */
-const BLOOM_BAR_COLORS = {
+const BLOOM_COLORS = {
   K1: "#14b8a6", K2: "#3b82f6", K3: "#6366f1",
   K4: "#f59e0b", K5: "#f97316", K6: "#ef4444",
   Unknown: "#94a3b8",
+};
+
+const BLOOM_LABELS = {
+  K1: "Remember", K2: "Understand", K3: "Apply",
+  K4: "Analyze", K5: "Evaluate", K6: "Create",
 };
 
 const CO_BAR_COLORS = [
@@ -96,26 +94,34 @@ const buildChartsHTML = (paper) => {
 
   if (totalBlooms === 0 && totalCOs === 0) return "";
 
-  const maxBloom = Math.max(...Object.values(bloomsData), 1);
-  const maxCO = Math.max(...Object.values(coData), 1);
+  // ── Bloom's Pie Chart (conic-gradient) ─────────────────────────
+  // Build conic-gradient stops
+  const activeBloomEntries = Object.entries(bloomsData).filter(([, v]) => v > 0);
+  let gradientStops = "";
+  let cumPct = 0;
+  for (const [key, val] of activeBloomEntries) {
+    const pct = totalBlooms ? (val / totalBlooms) * 100 : 0;
+    const color = BLOOM_COLORS[key] || BLOOM_COLORS.Unknown;
+    gradientStops += `${color} ${cumPct.toFixed(2)}% ${(cumPct + pct).toFixed(2)}%, `;
+    cumPct += pct;
+  }
+  // Remove trailing comma
+  gradientStops = gradientStops.replace(/,\s*$/, "");
 
-  // Bloom's horizontal bar rows
-  let bloomBars = "";
+  // Bloom's legend items
+  let bloomLegend = "";
   for (const [key, val] of Object.entries(bloomsData)) {
     const pct = totalBlooms ? Math.round((val / totalBlooms) * 100) : 0;
-    const widthPct = Math.max((val / maxBloom) * 100, val > 0 ? 8 : 0);
-    const color = BLOOM_BAR_COLORS[key] || BLOOM_BAR_COLORS.Unknown;
-    bloomBars += `
-      <div class="bar-row">
-        <div class="bar-label">${key}</div>
-        <div class="bar-track">
-          <div class="bar-fill" style="width:${widthPct}%;background:${color};">${val > 0 ? val : ""}</div>
-        </div>
-        <div class="bar-value">${val}m (${pct}%)</div>
-      </div>`;
+    const color = BLOOM_COLORS[key] || BLOOM_COLORS.Unknown;
+    const label = BLOOM_LABELS[key] || key;
+    bloomLegend += `<div class="pie-legend-item">
+      <div class="pie-legend-color" style="background:${color};"></div>
+      <span>${key} – ${label}: ${val}m (${pct}%)</span>
+    </div>`;
   }
 
-  // CO horizontal bar rows
+  // ── CO Bar Chart ───────────────────────────────────────────────
+  const maxCO = Math.max(...Object.values(coData), 1);
   let coBars = "";
   const coKeys = Object.keys(coData);
   coKeys.forEach((key, idx) => {
@@ -133,48 +139,22 @@ const buildChartsHTML = (paper) => {
       </div>`;
   });
 
-  // Bloom's legend
-  let bloomLegend = "";
-  for (const k of BLOOM_LEVELS) {
-    const labels = { K1: "Remember", K2: "Understand", K3: "Apply", K4: "Analyze", K5: "Evaluate", K6: "Create" };
-    bloomLegend += `<div class="legend-item"><div class="legend-color" style="background:${BLOOM_BAR_COLORS[k]};"></div>${k} – ${labels[k]}</div>`;
-  }
-
-  // Summary table
-  let summaryRows = "";
-  for (const [key, val] of Object.entries(bloomsData)) {
-    const pct = totalBlooms ? Math.round((val / totalBlooms) * 100) : 0;
-    summaryRows += `<tr><td>${key}</td><td>${val}</td><td>${pct}%</td></tr>`;
-  }
-  let coSummaryRows = "";
-  for (const [key, val] of Object.entries(coData)) {
-    const pct = totalCOs ? Math.round((val / totalCOs) * 100) : 0;
-    coSummaryRows += `<tr><td>${key}</td><td>${val}</td><td>${pct}%</td></tr>`;
-  }
-
   return `
   <div class="analysis-page">
     <h2>Question Paper Analysis</h2>
     <div class="charts-container">
       <div class="chart-box">
-        <h3>Bloom's Taxonomy Distribution (K1–K6)</h3>
-        <div class="bar-chart">${bloomBars}</div>
-        <div style="margin-top:12px;">${bloomLegend}</div>
+        <h3>Bloom's Taxonomy Distribution</h3>
+        <div class="pie-chart-wrapper">
+          <div class="pie-chart" style="background: conic-gradient(${gradientStops});"></div>
+        </div>
+        <div class="pie-legend">${bloomLegend}</div>
       </div>
       <div class="chart-box">
         <h3>Course Outcome Distribution</h3>
         <div class="bar-chart">${coBars}</div>
       </div>
     </div>
-    <table class="summary-table" style="margin-top:24px;">
-      <tr><th colspan="3" style="text-align:center;">Bloom's Taxonomy Summary</th></tr>
-      <tr><th>Level</th><th>Marks</th><th>%</th></tr>
-      ${summaryRows}
-      <tr><td colspan="3" style="height:10px;border:none;"></td></tr>
-      <tr><th colspan="3" style="text-align:center;">Course Outcome Summary</th></tr>
-      <tr><th>CO</th><th>Marks</th><th>%</th></tr>
-      ${coSummaryRows}
-    </table>
   </div>`;
 };
 
@@ -199,13 +179,16 @@ const buildHTML = (paper) => {
     ? `<div class="instructions"><strong>General Instructions:</strong><ol>${instructionsList}</ol></div>`
     : "";
 
-  // Render sections — each as a table
+  // Render sections — each as a table, each starting on a new page (except the first)
   let sectionsHTML = "";
   const sections = paper.sections || [];
 
-  for (const section of sections) {
-    // Section header
-    sectionsHTML += `<div class="section">
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
+    // Add page-break class for sections after the first
+    const sectionClass = i > 0 ? "section section-page-break" : "section";
+
+    sectionsHTML += `<div class="${sectionClass}">
       <div class="section-header">
         <strong>SECTION ${section.section_id}</strong>${section.title ? ` — ${section.title}` : ""}
       </div>`;
@@ -326,6 +309,7 @@ const buildHTML = (paper) => {
 
     /* ── Section ──────────────────────────────── */
     .section { margin-bottom: 18px; }
+    .section-page-break { page-break-before: always; }
     .section-header {
       font-size: 14px;
       text-align: center;
@@ -403,7 +387,7 @@ const buildHTML = (paper) => {
       padding-top: 6px;
     }
 
-    /* ── Chart Styles (PDF) ──────────────────── */
+    /* ── Analysis Page ─────────────────────────── */
     .analysis-page {
       page-break-before: always;
       padding-top: 20px;
@@ -438,6 +422,51 @@ const buildHTML = (paper) => {
       color: #334155;
       margin-bottom: 16px;
     }
+
+    /* ── Pie Chart (Bloom's) ──────────────────── */
+    .pie-chart-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .pie-chart {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: relative;
+    }
+    .pie-chart::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90px;
+      height: 90px;
+      background: #fafbfc;
+      border-radius: 50%;
+    }
+    .pie-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      justify-content: center;
+    }
+    .pie-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      color: #475569;
+    }
+    .pie-legend-color {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ── Bar Chart (CO) ──────────────────────── */
     .bar-chart { width: 100%; }
     .bar-row {
       display: flex;
@@ -473,48 +502,11 @@ const buildHTML = (paper) => {
       min-width: 28px;
     }
     .bar-value {
-      width: 50px;
+      width: 70px;
       text-align: right;
       font-size: 11px;
       color: #64748b;
       padding-left: 8px;
-    }
-    .legend-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      justify-content: center;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 10px;
-      color: #475569;
-    }
-    .legend-color {
-      width: 10px;
-      height: 10px;
-      border-radius: 3px;
-    }
-    .summary-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      font-size: 11px;
-    }
-    .summary-table th {
-      background: #f1f5f9;
-      padding: 6px 10px;
-      text-align: left;
-      font-weight: 600;
-      color: #334155;
-      border-bottom: 2px solid #e2e8f0;
-    }
-    .summary-table td {
-      padding: 5px 10px;
-      border-bottom: 1px solid #f1f5f9;
-      color: #475569;
     }
   </style>
 </head>

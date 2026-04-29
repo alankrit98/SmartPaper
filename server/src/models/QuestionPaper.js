@@ -20,11 +20,16 @@ const subQuestionSchema = new mongoose.Schema(
 // ── Choice option schema (for choice_group questions) ────────────
 const choiceOptionSchema = new mongoose.Schema(
   {
-    label: { type: String, required: true },
-    text: { type: String, required: true },
-    marks: { type: Number, required: true },
+    label: { type: String, default: "" },
+    text: { type: String, default: "" },
+    marks: { type: Number, default: 0 },
     difficulty: { type: String },
     topic: { type: String },
+    co: { type: Number },
+    bloom_level: {
+      type: String,
+      enum: ["K1", "K2", "K3", "K4", "K5", "K6"],
+    },
   },
   { _id: false }
 );

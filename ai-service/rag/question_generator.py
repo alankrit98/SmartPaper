@@ -104,6 +104,42 @@ EXAMPLE_OUTPUT = """{
           ]
         }
       ]
+    },
+    {
+      "section_id": "C",
+      "title": "Detailed Answer Questions",
+      "description": "Attempt any one part from each question",
+      "header_notes": "",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt any one part of each question",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Explain AVL tree rotations with suitable examples.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Discuss B-tree insertion and deletion with examples.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ]
+        }
+      ]
     }
   ]
 }"""
@@ -119,12 +155,17 @@ def _collect_leaf_marks(paper: Dict[str, Any]) -> List[Dict[str, Any]]:
     for section in paper.get("sections", []):
         for q in section.get("questions", []):
             subs = q.get("subquestions", [])
+            opts = q.get("options", [])
             if q.get("type") == "single" and subs:
                 items.append(subs[0])
             elif q.get("type") == "subparts" and subs:
                 items.extend(subs)
-            elif q.get("type") == "choice_group" and subs:
-                items.extend(subs)
+            elif q.get("type") == "choice_group":
+                # Prefer options array; fall back to subquestions
+                if opts:
+                    items.extend(opts)
+                elif subs:
+                    items.extend(subs)
     return items
 
 
@@ -204,7 +245,9 @@ def _build_prompt_text(
         "4. Do NOT repeat questions or ask the same concept in different ways.\n"
         "5. Higher-mark questions should be more detailed and require deeper analysis.\n"
         "6. For 'subparts' type questions, split the marks across sub-questions (labels: a, b, c…).\n"
-        "7. For 'choice_group' type questions, provide alternative options the student can choose from.\n"
+        "7. For 'choice_group' type questions, provide TWO alternative options in the 'options' array (NOT 'subquestions'). "
+           "Each option must have: label (a/b), text, marks, difficulty, topic, co, bloom_level. "
+           "Set subquestions to an empty array []. The student picks ONE option from each question.\n"
         "8. For 'single' type questions, use a single subquestion with the same marks.\n"
         "9. Assign appropriate Bloom's taxonomy levels: K1(Remember), K2(Understand), K3(Apply), K4(Analyse), K5(Evaluate), K6(Create).\n"
         "10. Assign Course Outcome numbers (co) logically starting from 1.\n"

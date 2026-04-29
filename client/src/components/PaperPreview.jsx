@@ -39,40 +39,29 @@ export default function PaperPreview({ paper }) {
         )
       })
     } else if (q.type === 'choice_group') {
-      if (q.subquestions?.length > 0) {
-        q.subquestions.forEach((sq, idx) => {
+      // Use options as primary source; fall back to subquestions
+      const items = (q.options?.length > 0) ? q.options : (q.subquestions || [])
+      items.forEach((opt, idx) => {
+        // Add OR divider between options
+        if (idx > 0) {
           rows.push(
-            <tr key={`q-${q.question_id}-sub-${sq.label || idx}`}>
-              <td className="col-qno">{idx === 0 ? q.question_id : ''}</td>
-              <td className="col-question">
-                <span className="sub-label">({sq.label || String.fromCharCode(97 + idx)})</span> {sq.text}
-              </td>
-              <td className="col-marks">{sq.marks}</td>
-              <td className="col-co">{sq.co ? `CO${sq.co}` : '-'}</td>
+            <tr key={`q-${q.question_id}-or-${idx}`} className="or-row">
+              <td className="col-qno"></td>
+              <td colSpan={3} className="or-cell"><strong>OR</strong></td>
             </tr>
           )
-        })
-      }
-      if (q.options?.length > 0) {
+        }
         rows.push(
-          <tr key={`q-${q.question_id}-or`} className="or-row">
-            <td className="col-qno"></td>
-            <td colSpan={3} className="or-cell"><strong>OR</strong></td>
+          <tr key={`q-${q.question_id}-opt-${opt.label || idx}`}>
+            <td className="col-qno">{idx === 0 ? q.question_id : ''}</td>
+            <td className="col-question">
+              <span className="sub-label">({opt.label || String.fromCharCode(97 + idx)})</span> {opt.text}
+            </td>
+            <td className="col-marks">{opt.marks || q.marks}</td>
+            <td className="col-co">{opt.co ? `CO${opt.co}` : '-'}</td>
           </tr>
         )
-        q.options.forEach((opt, idx) => {
-          rows.push(
-            <tr key={`q-${q.question_id}-opt-${opt.label || idx}`}>
-              <td className="col-qno"></td>
-              <td className="col-question">
-                <span className="sub-label">({opt.label || String.fromCharCode(97 + idx)})</span> {opt.text}
-              </td>
-              <td className="col-marks">{opt.marks}</td>
-              <td className="col-co">-</td>
-            </tr>
-          )
-        })
-      }
+      })
     }
 
     return rows
