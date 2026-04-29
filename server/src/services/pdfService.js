@@ -18,74 +18,56 @@ const ensurePDFDir = () => {
 };
 
 /**
- * Render a single question's HTML based on its type.
+ * Render a single question row (or multiple rows for subparts) in the table.
  */
-const renderQuestion = (q) => {
+const renderQuestionRows = (q) => {
   let html = "";
 
   if (q.type === "single" && q.subquestions?.length > 0) {
-    // Single question — use the first subquestion text
     const sq = q.subquestions[0];
-    html += `<div class="question">
-      <div class="q-header">
-        <span class="q-num">Q${q.question_id}.</span>
-        <span class="q-text">${sq.text}</span>
-        <span class="marks">[${q.marks} Marks]</span>
-      </div>
-      <div class="q-meta">
-        ${sq.bloom_level ? `<span class="tag bloom">${sq.bloom_level}</span>` : ""}
-        ${sq.co ? `<span class="tag co">CO${sq.co}</span>` : ""}
-      </div>
-    </div>`;
+    html += `<tr>
+      <td class="col-qno">${q.question_id}</td>
+      <td class="col-question">${sq.text}</td>
+      <td class="col-marks">${q.marks}</td>
+      <td class="col-co">${sq.co ? `CO${sq.co}` : "-"}</td>
+    </tr>`;
   } else if (q.type === "subparts" && q.subquestions?.length > 0) {
-    // Question with sub-parts
-    html += `<div class="question">
-      <div class="q-header">
-        <span class="q-num">Q${q.question_id}.</span>
-        <span class="marks">[${q.marks} Marks]</span>
-      </div>
-      <ol class="subparts" type="a">`;
-    for (const sq of q.subquestions) {
-      html += `<li>
-        <span class="q-text">${sq.text}</span>
-        <span class="marks">[${sq.marks} Marks]</span>
-        ${sq.bloom_level ? `<span class="tag bloom">${sq.bloom_level}</span>` : ""}
-        ${sq.co ? `<span class="tag co">CO${sq.co}</span>` : ""}
-      </li>`;
-    }
-    html += `</ol></div>`;
+    // First row — question number with (a) part
+    q.subquestions.forEach((sq, idx) => {
+      html += `<tr>
+        <td class="col-qno">${idx === 0 ? q.question_id : ""}</td>
+        <td class="col-question"><span class="sub-label">(${sq.label || String.fromCharCode(97 + idx)})</span> ${sq.text}</td>
+        <td class="col-marks">${sq.marks}</td>
+        <td class="col-co">${sq.co ? `CO${sq.co}` : "-"}</td>
+      </tr>`;
+    });
   } else if (q.type === "choice_group") {
-    // Question with OR choices
-    html += `<div class="question">
-      <div class="q-header">
-        <span class="q-num">Q${q.question_id}.</span>
-        <span class="marks">[${q.marks} Marks]</span>
-      </div>`;
-
+    // Main question subparts
     if (q.subquestions?.length > 0) {
-      html += `<div class="choice-label">Answer the following:</div>
-      <ol class="subparts" type="a">`;
-      for (const sq of q.subquestions) {
-        html += `<li>
-          <span class="q-text">${sq.text}</span>
-          <span class="marks">[${sq.marks} Marks]</span>
-        </li>`;
-      }
-      html += `</ol>`;
+      q.subquestions.forEach((sq, idx) => {
+        html += `<tr>
+          <td class="col-qno">${idx === 0 ? q.question_id : ""}</td>
+          <td class="col-question"><span class="sub-label">(${sq.label || String.fromCharCode(97 + idx)})</span> ${sq.text}</td>
+          <td class="col-marks">${sq.marks}</td>
+          <td class="col-co">${sq.co ? `CO${sq.co}` : "-"}</td>
+        </tr>`;
+      });
     }
-
+    // OR divider + options
     if (q.options?.length > 0) {
-      html += `<div class="choice-label">OR</div>
-      <ol class="subparts" type="a">`;
-      for (const opt of q.options) {
-        html += `<li>
-          <span class="q-text">${opt.text}</span>
-          <span class="marks">[${opt.marks} Marks]</span>
-        </li>`;
-      }
-      html += `</ol>`;
+      html += `<tr class="or-row">
+        <td class="col-qno"></td>
+        <td colspan="3" class="or-cell"><strong>OR</strong></td>
+      </tr>`;
+      q.options.forEach((opt, idx) => {
+        html += `<tr>
+          <td class="col-qno"></td>
+          <td class="col-question"><span class="sub-label">(${opt.label || String.fromCharCode(97 + idx)})</span> ${opt.text}</td>
+          <td class="col-marks">${opt.marks}</td>
+          <td class="col-co">-</td>
+        </tr>`;
+      });
     }
-    html += `</div>`;
   }
 
   return html;
@@ -197,7 +179,8 @@ const buildChartsHTML = (paper) => {
 };
 
 /**
- * Build an HTML string from the question paper data (rich format).
+ * Build an HTML string from the question paper data — TABULAR FORMAT.
+ * Matches standard university exam paper layout with Q.No | Question | Marks | CO columns.
  */
 const buildHTML = (paper) => {
   const meta = paper.metadata || {};
@@ -213,33 +196,52 @@ const buildHTML = (paper) => {
     .map((inst) => `<li>${inst}</li>`)
     .join("");
   const instructionsHTML = instructionsList
-    ? `<div class="instructions"><strong>Instructions:</strong><ol>${instructionsList}</ol></div>`
+    ? `<div class="instructions"><strong>General Instructions:</strong><ol>${instructionsList}</ol></div>`
     : "";
 
-  // Render sections
+  // Render sections — each as a table
   let sectionsHTML = "";
   const sections = paper.sections || [];
 
   for (const section of sections) {
+    // Section header
     sectionsHTML += `<div class="section">
-      <h2>Section ${section.section_id} — ${section.title}</h2>`;
+      <div class="section-header">
+        <strong>SECTION ${section.section_id}</strong>${section.title ? ` — ${section.title}` : ""}
+      </div>`;
 
-    if (section.description) {
-      sectionsHTML += `<p class="section-desc">${section.description}</p>`;
+    // Custom header notes (user-defined section description)
+    const headerNotes = section.header_notes || section.description || "";
+    if (headerNotes) {
+      sectionsHTML += `<div class="section-notes">${headerNotes.replace(/\n/g, "<br/>")}</div>`;
     }
+
+    // Attempt rule & marks scheme
     if (section.marks_scheme || section.attempt_rule) {
-      sectionsHTML += `<p class="section-info">`;
+      sectionsHTML += `<div class="section-info">`;
       if (section.marks_scheme) sectionsHTML += `<em>${section.marks_scheme}</em>`;
       if (section.marks_scheme && section.attempt_rule) sectionsHTML += ` | `;
       if (section.attempt_rule) sectionsHTML += `<em>${section.attempt_rule}</em>`;
-      sectionsHTML += `</p>`;
+      sectionsHTML += `</div>`;
     }
+
+    // Question table
+    sectionsHTML += `<table class="question-table">
+      <thead>
+        <tr>
+          <th class="col-qno">Q.No.</th>
+          <th class="col-question">Question</th>
+          <th class="col-marks">Marks</th>
+          <th class="col-co">CO</th>
+        </tr>
+      </thead>
+      <tbody>`;
 
     for (const q of section.questions || []) {
-      sectionsHTML += renderQuestion(q);
+      sectionsHTML += renderQuestionRows(q);
     }
 
-    sectionsHTML += `</div>`;
+    sectionsHTML += `</tbody></table></div>`;
   }
 
   // Build analysis charts HTML
@@ -255,74 +257,153 @@ const buildHTML = (paper) => {
     body {
       font-family: 'Times New Roman', Times, serif;
       font-size: 13px;
-      padding: 40px 50px;
+      padding: 32px 40px;
       color: #000;
     }
+
+    /* ── Header ──────────────────────────────── */
     .header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       border-bottom: 2px solid #000;
-      padding-bottom: 12px;
+      padding-bottom: 10px;
     }
-    .header h1 { font-size: 20px; margin-bottom: 4px; }
-    .header h2 { font-size: 16px; font-weight: normal; margin-bottom: 4px; }
-    .header h3 { font-size: 14px; font-weight: normal; color: #333; }
-    .meta {
+    .header .college-name {
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+    }
+    .header .exam-title {
+      font-size: 15px;
+      font-weight: 400;
+      margin-bottom: 2px;
+    }
+    .header .subject-line {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    /* ── Meta Row ─────────────────────────────── */
+    .meta-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 6px;
       font-size: 13px;
+      line-height: 1.7;
+      border-bottom: 1px solid #999;
+      padding-bottom: 8px;
     }
-    .meta div { line-height: 1.6; }
+    .meta-row div { min-width: 33%; }
+    .meta-row .center { text-align: center; }
+    .meta-row .right { text-align: right; }
+
+    /* ── Roll Number ──────────────────────────── */
+    .roll-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+    .roll-box {
+      border: 1px solid #000;
+      padding: 4px 40px 4px 8px;
+      font-weight: 600;
+    }
+
+    /* ── Instructions ─────────────────────────── */
     .instructions {
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       padding: 8px 12px;
-      border: 1px solid #ccc;
-      background: #f9f9f9;
+      border: 1px solid #bbb;
+      background: #fafafa;
       font-size: 12px;
     }
     .instructions ol { padding-left: 20px; margin-top: 4px; }
     .instructions li { margin-bottom: 2px; }
-    .section { margin-bottom: 22px; }
-    .section h2 {
-      font-size: 15px;
-      margin-bottom: 6px;
-      text-decoration: underline;
+
+    /* ── Section ──────────────────────────────── */
+    .section { margin-bottom: 18px; }
+    .section-header {
+      font-size: 14px;
+      text-align: center;
+      padding: 5px 0;
+      background: #f0f0f0;
+      border: 1px solid #999;
+      border-bottom: none;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
-    .section-desc { font-size: 12px; color: #444; margin-bottom: 4px; }
-    .section-info { font-size: 12px; color: #555; margin-bottom: 10px; }
-    .question { margin-bottom: 12px; padding-left: 4px; }
-    .q-header { display: flex; align-items: baseline; gap: 6px; margin-bottom: 2px; }
-    .q-num { font-weight: bold; min-width: 32px; }
-    .q-text { flex: 1; line-height: 1.5; }
-    .marks { font-weight: bold; font-size: 12px; color: #333; white-space: nowrap; }
-    .q-meta { margin-left: 32px; margin-top: 2px; }
-    .tag {
-      display: inline-block;
-      font-size: 10px;
-      padding: 1px 5px;
-      border-radius: 3px;
+    .section-notes {
+      font-size: 12px;
+      color: #333;
+      padding: 6px 10px;
+      border-left: 1px solid #999;
+      border-right: 1px solid #999;
+      background: #fafafa;
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .section-info {
+      font-size: 12px;
+      color: #444;
+      text-align: center;
+      padding: 4px 0;
+      font-style: italic;
+      border-left: 1px solid #999;
+      border-right: 1px solid #999;
+    }
+
+    /* ── Question Table ───────────────────────── */
+    .question-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .question-table th {
+      background: #e8e8e8;
+      font-weight: 700;
+      padding: 6px 8px;
+      border: 1px solid #999;
+      text-align: center;
+      font-size: 12px;
+    }
+    .question-table td {
+      padding: 6px 8px;
+      border: 1px solid #bbb;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .col-qno { width: 50px; text-align: center; font-weight: 600; }
+    .col-question { text-align: left; }
+    .col-marks { width: 50px; text-align: center; font-weight: 600; }
+    .col-co { width: 50px; text-align: center; font-weight: 600; }
+    .sub-label {
+      font-weight: 600;
       margin-right: 4px;
     }
-    .bloom { background: #e3f2fd; color: #1565c0; }
-    .co { background: #e8f5e9; color: #2e7d32; }
-    .subparts { padding-left: 42px; margin-top: 4px; }
-    .subparts li { margin-bottom: 6px; line-height: 1.5; }
-    .choice-label {
-      margin: 8px 0 4px 32px;
-      font-weight: bold;
+    .or-row td { border-top: 1px dashed #999; border-bottom: 1px dashed #999; }
+    .or-cell {
+      text-align: center;
       font-style: italic;
+      padding: 3px 0;
       color: #555;
     }
+
+    /* ── Footer ───────────────────────────────── */
     .footer {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 24px;
       font-size: 10px;
       color: #666;
       border-top: 1px solid #ccc;
-      padding-top: 8px;
+      padding-top: 6px;
     }
-    /* ── Chart Styles (PDF) ──────────────────────── */
+
+    /* ── Chart Styles (PDF) ──────────────────── */
     .analysis-page {
       page-break-before: always;
       padding-top: 20px;
@@ -438,21 +519,23 @@ const buildHTML = (paper) => {
   </style>
 </head>
 <body>
+  <!-- Header -->
   <div class="header">
-    <h1>${collegeName}</h1>
-    <h2>${examName}</h2>
-    ${subjectCode ? `<h3>${subjectCode}</h3>` : ""}
+    <div class="college-name">${collegeName}</div>
+    <div class="exam-title">${examName}</div>
+    <div class="subject-line">${subjectName}${subjectCode ? ` (${subjectCode})` : ""}</div>
   </div>
 
-  <div class="meta">
-    <div>
-      <strong>Subject:</strong> ${subjectName}<br/>
-      ${subjectCode ? `<strong>Code:</strong> ${subjectCode}<br/>` : ""}
-    </div>
-    <div>
-      <strong>Max Marks:</strong> ${maxMarks}<br/>
-      <strong>Duration:</strong> ${duration}
-    </div>
+  <!-- Roll Number -->
+  <div class="roll-row">
+    <div class="roll-box">Roll No. ______________</div>
+  </div>
+
+  <!-- Meta -->
+  <div class="meta-row">
+    <div><strong>Subject:</strong> ${subjectName}${subjectCode ? `<br/><strong>Code:</strong> ${subjectCode}` : ""}</div>
+    <div class="center"><strong>Time:</strong> ${duration}</div>
+    <div class="right"><strong>Max. Marks:</strong> ${maxMarks}</div>
   </div>
 
   ${instructionsHTML}
@@ -461,7 +544,7 @@ const buildHTML = (paper) => {
 
   <div class="footer">
     Generated on ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}
-    &bull; AI Question Paper Generator
+    &bull; SmartPaper — AI Question Paper Generator
   </div>
 
   ${chartsHTML}

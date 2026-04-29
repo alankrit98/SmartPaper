@@ -1,0 +1,360 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "End Semester Examination",
+    "subject": "Discrete Structures & Theory of Logic",
+    "subject_code": "BCS303",
+    "duration": "3 Hours",
+    "max_marks": 70
+  },
+  "instructions": [
+    "Attempt all questions.",
+    "Each section has specific instructions regarding the number of questions to attempt.",
+    "Show all calculation steps clearly in numerical questions."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Define the Power Set of a given set A.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Introduction, Combination of sets",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "List the properties required for a relation to be an equivalence relation.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Properties of relations",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Define a Complemented Lattice.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Definition & Properties of lattices",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "Explain the difference between an injective and a surjective function.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Classification of functions",
+              "co": 2,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "State the Distributive Law in Boolean Algebra.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Axioms and Theorems of Boolean algebra",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "Define a Tautology in propositional logic.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Tautology",
+              "co": 3,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "What is a Well-Formed Formula (WFF) in predicate logic?",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "well-formed formula of predicate",
+              "co": 3,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "Define a Subgroup of a group G.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Subgroups and order",
+              "co": 4,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "Define an Euler path in a graph.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Euler and Hamiltonian paths",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "State the Generalized Pigeonhole Principle.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Pigeonhole Principle",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Numerical Based Questions",
+      "marks_scheme": "6 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "11",
+              "text": "Let A = {1, 2, 3, 4, 6, 12} and let R be the relation 'divides' on A. Draw the Hasse diagram for this POSET (A, R).",
+              "marks": 6,
+              "difficulty": "moderate",
+              "topic": "Hasse Diagram, POSET",
+              "co": 1,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "12",
+              "text": "Simplify the Boolean function F(A, B, C, D) = Σm(0, 1, 2, 5, 8, 9, 10) using a Karnaugh Map.",
+              "marks": 6,
+              "difficulty": "moderate",
+              "topic": "Karnaugh maps",
+              "co": 2,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 13,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "13",
+              "text": "Check the validity of the following argument using a truth table: [(p → q) ∧ (q → r)] → (p → r).",
+              "marks": 6,
+              "difficulty": "moderate",
+              "topic": "Truth tables, Theory of Inference",
+              "co": 3,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 14,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "14",
+              "text": "In the group (Z10, +10), find all the cosets of the subgroup H = {0, 5}.",
+              "marks": 6,
+              "difficulty": "moderate",
+              "topic": "Cosets, Lagrange's theorem",
+              "co": 4,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 15,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "15",
+              "text": "Calculate the number of ways to arrange the letters of the word 'MATHEMATICS' so that all vowels occur together.",
+              "marks": 6,
+              "difficulty": "moderate",
+              "topic": "Counting Techniques",
+              "co": 5,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Advanced Numerical/Analysis Questions",
+      "marks_scheme": "10 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 16,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "16",
+              "text": "Determine the number of integers between 1 and 1000 (inclusive) that are divisible by 4, 5, or 6 using the Principle of Inclusion-Exclusion.",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Counting Techniques",
+              "co": 5,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 17,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "17",
+              "text": "For a connected planar graph with 20 vertices, where each vertex has a degree of 3, calculate the number of edges and the number of faces using Euler’s formula.",
+              "marks": 10,
+              "difficulty": "hard",
+              "topic": "Planar graphs",
+              "co": 5,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 10,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 6,
+      "questionType": "single"
+    },
+    {
+      "section": "C",
+      "questions": 2,
+      "marksEach": 10,
+      "questionType": "single"
+    }
+  ],
+  "difficulty": "Mixed",
+  "createdBy": "69e3b544010eeba35c84cc5c",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69ef3e886f3fd75f17061fcc.pdf",
+  "_id": "69ef3e886f3fd75f17061fcc",
+  "createdAt": "2026-04-27T10:46:32.869Z",
+  "updatedAt": "2026-04-27T10:46:34.889Z",
+  "__v": 0
+}

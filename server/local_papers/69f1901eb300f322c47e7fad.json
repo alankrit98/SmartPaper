@@ -1,0 +1,364 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "End Semester Examination",
+    "subject": "COMPUTER ORGANIZATION AND ARCHITECTURE",
+    "subject_code": "BCS302",
+    "duration": "3 Hours",
+    "max_marks": 70
+  },
+  "instructions": [
+    "Attempt all questions.",
+    "Be precise in your answers.",
+    "Draw neat diagrams wherever necessary."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions",
+      "header_notes": "Attempt all questions",
+      "marks_scheme": "10 questions × 2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Define the functional units of a digital computer system.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Functional units of digital system",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "What is meant by bus arbitration?",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "bus arbitration",
+              "co": 1,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "State the IEEE 754 standard representation for single-precision floating-point numbers.",
+              "marks": 2,
+              "difficulty": "medium",
+              "topic": "IEEE Standard for Floating Point Numbers",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "Define the term 'Arithmetic and Logic Unit' (ALU).",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Arithmetic & logic unit design",
+              "co": 2,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "What is a micro-operation?",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "micro operations",
+              "co": 3,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "Define the purpose of cache memory in a computer system.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Cache memories",
+              "co": 4,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "Define Direct Memory Access (DMA).",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Direct Memory Access",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "List the different modes of data transfer between CPU and I/O devices.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Modes of Data Transfer",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "What is an I/O interface?",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "I/O interface",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "Define the concept of an interrupt.",
+              "marks": 2,
+              "difficulty": "easy",
+              "topic": "Interrupts",
+              "co": 5,
+              "bloom_level": "K1"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Medium Answer Questions",
+      "header_notes": "Attempt all questions",
+      "marks_scheme": "5 questions × 6 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "11",
+              "text": "Explain the concept of instruction cycles and its sub-cycles (fetch and execute).",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "instruction cycles and sub cycles",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "12",
+              "text": "Describe the basic concept of pipelining in processor organization.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Pipelining",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 13,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "13",
+              "text": "Compare 2D and 2 1/2D memory organization of semiconductor RAM.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "2D & 2 1/2D memory organization",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 14,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "14",
+              "text": "Discuss the different address mapping techniques used in cache memory.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "address mapping and replacement",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 15,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "15",
+              "text": "Explain the working of programmed I/O and interrupt-initiated I/O modes of data transfer.",
+              "marks": 6,
+              "difficulty": "medium",
+              "topic": "Programmed I/O and interrupt initiated I/O",
+              "co": 5,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Long Answer Questions",
+      "header_notes": "Attempt all questions",
+      "marks_scheme": "2 questions × 10 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 16,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "16",
+              "text": "Describe various addressing modes used in processor organization with suitable examples.",
+              "marks": 10,
+              "difficulty": "medium",
+              "topic": "addressing modes",
+              "co": 1,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 17,
+          "type": "single",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "17",
+              "text": "Explain Booth's algorithm for signed operand multiplication with the help of a flowchart.",
+              "marks": 10,
+              "difficulty": "medium",
+              "topic": "Booths algorithm",
+              "co": 2,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 10,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 6,
+      "questionType": "single"
+    },
+    {
+      "section": "C",
+      "questions": 2,
+      "marksEach": 10,
+      "questionType": "single",
+      "difficulty": "Moderate"
+    }
+  ],
+  "difficulty": "Moderate (50%)",
+  "createdBy": "69e3b544010eeba35c84cc5c",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69f1901eb300f322c47e7fad.pdf",
+  "_id": "69f1901eb300f322c47e7fad",
+  "createdAt": "2026-04-29T04:59:10.553Z",
+  "updatedAt": "2026-04-29T04:59:12.814Z",
+  "__v": 0
+}

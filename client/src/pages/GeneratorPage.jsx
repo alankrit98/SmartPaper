@@ -49,9 +49,9 @@ const normalizeDetectedSubjects = (payload) => {
 }
 
 const DEFAULT_PATTERN = [
-  { section: 'A', questions: 10, marksEach: 2, questionType: 'single' },
-  { section: 'B', questions: 5, marksEach: 6, questionType: 'single' },
-  { section: 'C', questions: 2, marksEach: 10, questionType: 'single' },
+  { section: 'A', questions: 7, marksEach: 2, questionType: 'single', difficulty: '', description: '' },
+  { section: 'B', questions: 5, marksEach: 7, questionType: 'single', difficulty: '', description: '' },
+  { section: 'C', questions: 5, marksEach: 7, questionType: 'choice_group', difficulty: '', description: '' },
 ]
 
 export default function GeneratorPage() {
@@ -113,7 +113,12 @@ export default function GeneratorPage() {
 
   const updatePattern = (index, field, value) => {
     const newPattern = [...pattern]
-    newPattern[index] = { ...newPattern[index], [field]: parseInt(value) || 0 }
+    // Numeric fields vs string fields
+    if (field === 'questions' || field === 'marksEach') {
+      newPattern[index] = { ...newPattern[index], [field]: parseInt(value) || 0 }
+    } else {
+      newPattern[index] = { ...newPattern[index], [field]: value }
+    }
     setPattern(newPattern)
   }
 
@@ -129,7 +134,7 @@ export default function GeneratorPage() {
       return
     }
     const nextLabel = String.fromCharCode(65 + pattern.length)
-    setPattern([...pattern, { section: nextLabel, questions: 5, marksEach: 5 }])
+    setPattern([...pattern, { section: nextLabel, questions: 5, marksEach: 5, questionType: 'single', difficulty: '', description: '' }])
   }
 
   const removeSection = (indexToRemove) => {
@@ -872,84 +877,120 @@ export default function GeneratorPage() {
                     <div
                       key={sec.section}
                       style={{
-                        display: 'grid',
-                        gridTemplateColumns: '100px 1fr 1fr auto auto',
-                        gap: '12px',
-                        alignItems: 'center',
                         padding: '16px',
                         borderRadius: '10px',
                         background: 'var(--bg-input)',
                         border: '1px solid var(--border)',
                       }}
                     >
-                      <div>
-                        <span style={{
-                          fontSize: '0.85rem',
-                          fontWeight: 600,
-                          color: 'var(--text-primary)',
-                        }}>
-                          Section {sec.section}
-                        </span>
-                      </div>
-                      <div>
-                        <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>
-                          Questions
-                        </label>
-                        <input
-                          type="number"
-                          className="input-field"
-                          style={{ padding: '8px 12px' }}
-                          value={sec.questions}
-                          onChange={(e) => updatePattern(idx, 'questions', e.target.value)}
-                          min={1}
-                          max={50}
-                          disabled={loading}
-                        />
-                      </div>
-                      <div>
-                        <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>
-                          Marks Each
-                        </label>
-                        <input
-                          type="number"
-                          className="input-field"
-                          style={{ padding: '8px 12px' }}
-                          value={sec.marksEach}
-                          onChange={(e) => updatePattern(idx, 'marksEach', e.target.value)}
-                          min={1}
-                          max={50}
-                          disabled={loading}
-                        />
-                      </div>
+                      {/* Row 1: Section label, questions, marks, total, delete */}
                       <div style={{
-                        fontSize: '0.8rem',
-                        color: 'var(--text-muted)',
-                        whiteSpace: 'nowrap',
-                        paddingTop: '18px',
-                        marginRight: '12px'
+                        display: 'grid',
+                        gridTemplateColumns: '100px 1fr 1fr auto auto',
+                        gap: '12px',
+                        alignItems: 'center',
                       }}>
-                        = {sec.questions * sec.marksEach}m
-                      </div>
-                      <div style={{ paddingTop: '18px' }}>
-                         <button
-                            type="button"
-                            onClick={() => removeSection(idx)}
-                            disabled={loading || pattern.length <= 1}
-                            style={{
-                              background: 'none',
-                              border: 'none',
-                              color: pattern.length <= 1 ? 'var(--text-muted)' : 'var(--error)',
-                              cursor: pattern.length <= 1 ? 'not-allowed' : 'pointer',
-                              fontSize: '1rem',
-                            }}
-                            title="Remove Section"
-                         >
-                           ✖
-                         </button>
+                        <div>
+                          <span style={{
+                            fontSize: '0.85rem',
+                            fontWeight: 600,
+                            color: 'var(--text-primary)',
+                          }}>
+                            Section {sec.section}
+                          </span>
+                        </div>
+                        <div>
+                          <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>
+                            Questions
+                          </label>
+                          <input
+                            type="number"
+                            className="input-field"
+                            style={{ padding: '8px 12px' }}
+                            value={sec.questions}
+                            onChange={(e) => updatePattern(idx, 'questions', e.target.value)}
+                            min={1}
+                            max={50}
+                            disabled={loading}
+                          />
+                        </div>
+                        <div>
+                          <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>
+                            Marks Each
+                          </label>
+                          <input
+                            type="number"
+                            className="input-field"
+                            style={{ padding: '8px 12px' }}
+                            value={sec.marksEach}
+                            onChange={(e) => updatePattern(idx, 'marksEach', e.target.value)}
+                            min={1}
+                            max={50}
+                            disabled={loading}
+                          />
+                        </div>
+                        <div style={{
+                          fontSize: '0.8rem',
+                          color: 'var(--text-muted)',
+                          whiteSpace: 'nowrap',
+                          paddingTop: '18px',
+                          marginRight: '12px'
+                        }}>
+                          = {sec.questions * sec.marksEach}m
+                        </div>
+                        <div style={{ paddingTop: '18px' }}>
+                           <button
+                              type="button"
+                              onClick={() => removeSection(idx)}
+                              disabled={loading || pattern.length <= 1}
+                              style={{
+                                background: 'none',
+                                border: 'none',
+                                color: pattern.length <= 1 ? 'var(--text-muted)' : 'var(--error)',
+                                cursor: pattern.length <= 1 ? 'not-allowed' : 'pointer',
+                                fontSize: '1rem',
+                              }}
+                              title="Remove Section"
+                           >
+                             ✖
+                           </button>
+                        </div>
                       </div>
                       
-                      {/* Section Extras: Internal choice */}
-                      <div style={{ gridColumn: '1 / -1', display: 'flex', gap: '16px', marginTop: '4px', paddingTop: '8px', borderTop: '1px dashed var(--border)' }}>
+                      {/* Row 2: Section difficulty override + internal choice */}
+                      <div style={{ display: 'flex', gap: '16px', marginTop: '8px', paddingTop: '8px', borderTop: '1px dashed var(--border)', alignItems: 'center', flexWrap: 'wrap' }}>
+                          {/* Section Difficulty Override */}
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <label style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontWeight: 500, whiteSpace: 'nowrap' }}>
+                              📊 Difficulty:
+                            </label>
+                            <select
+                              className="input-field"
+                              value={sec.difficulty || ''}
+                              onChange={(e) => updatePattern(idx, 'difficulty', e.target.value)}
+                              disabled={loading}
+                              style={{ padding: '6px 10px', fontSize: '0.8rem', minWidth: '140px', width: 'auto' }}
+                            >
+                              <option value="">Use Global</option>
+                              <option value="Easy">Easy</option>
+                              <option value="Moderate">Moderate</option>
+                              <option value="Hard">Hard</option>
+                            </select>
+                            {sec.difficulty && (
+                              <span style={{
+                                fontSize: '0.7rem',
+                                fontWeight: 600,
+                                color: sec.difficulty === 'Easy' ? 'var(--success)' : sec.difficulty === 'Hard' ? 'var(--error)' : 'var(--accent)',
+                                background: sec.difficulty === 'Easy' ? 'rgba(16,185,129,0.08)' : sec.difficulty === 'Hard' ? 'rgba(239,68,68,0.06)' : 'rgba(99,102,241,0.08)',
+                                padding: '2px 8px',
+                                borderRadius: '4px',
+                              }}>
+                                Override
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Internal choice checkbox */}
                           <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
                             <input 
                               type="checkbox" 
@@ -960,6 +1001,49 @@ export default function GeneratorPage() {
                             />
                             Include Internal Choice (OR)
                           </label>
+                      </div>
+
+                      {/* Row 3: Section notes / description (collapsible) */}
+                      <div style={{ marginTop: '8px' }}>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            // Toggle visibility by setting description to null or empty
+                            if (sec._showNotes) {
+                              updatePattern(idx, '_showNotes', false)
+                            } else {
+                              updatePattern(idx, '_showNotes', true)
+                            }
+                          }}
+                          style={{
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            fontSize: '0.78rem',
+                            fontWeight: 500,
+                            color: 'var(--accent)',
+                            padding: '2px 0',
+                            fontFamily: 'inherit',
+                          }}
+                        >
+                          {sec._showNotes || sec.description ? '📝 Hide Section Notes' : '📝 Add Section Notes'}
+                        </button>
+                        {(sec._showNotes || sec.description) && (
+                          <textarea
+                            className="input-field"
+                            placeholder="Optional notes, instructions, or topic summary for this section... (shown below section title in the paper)"
+                            value={sec.description || ''}
+                            onChange={(e) => updatePattern(idx, 'description', e.target.value)}
+                            disabled={loading}
+                            rows={2}
+                            style={{
+                              marginTop: '6px',
+                              fontSize: '0.82rem',
+                              resize: 'vertical',
+                              minHeight: '50px',
+                            }}
+                          />
+                        )}
                       </div>
                     </div>
                   ))}

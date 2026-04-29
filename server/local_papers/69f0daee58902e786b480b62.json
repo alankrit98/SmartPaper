@@ -1,0 +1,378 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "End Semester Examination",
+    "subject": "Computer Organization and Architecture",
+    "subject_code": "BCS302",
+    "duration": "3 Hours",
+    "max_marks": 70
+  },
+  "instructions": [
+    "Attempt all questions.",
+    "Each section has specific instructions regarding the number of questions to attempt.",
+    "Assume suitable data if any missing."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "A system utilizing a centralized bus arbiter is dependent on the stability of the 'Bus Request' line. If this line remains stuck at high, it may negatively impact overall system stability by potentially causing intermittent or unpredictable arbiter behavior, which could lead to delays or conflicts with other bus masters.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "bus arbitration",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "Load PC into memory location pointed to by SP.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Register, bus and memory transfer",
+              "co": 1,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "What is the more efficient data access strategy for a 2D array stored in row-major order?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "addressing modes",
+              "co": 1,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "What is the impact of increasing the exponent bit count in a 32-bit IEEE 754 floating-point representation on the numerical range and precision?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "IEEE Standard for Floating Point Numbers",
+              "co": 2,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "What are the specific micro-operations involved in the 'Fetch' phase of an instruction cycle?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "instruction cycles",
+              "co": 3,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "What is the primary constraint for a processor design focusing on minimizing the size of the Control Store (ROM)?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "concept of horizontal and vertical microprogramming",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "What is the effective memory access time when a cache hit ratio of 0.95 is achieved with a 2ns cache access time and a 50ns main memory access time?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Cache memories: concept and design issues & performance",
+              "co": 4,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "What is the primary benefit of a 2.5D memory organization over a 2D organization for a 1MB RAM chip?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "2D & 2 1/2D memory organization",
+              "co": 4,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "In a daisy-chaining interrupt method, which prioritizes tasks based on the physical placement of devices relative to the CPU, devices are assigned a priority order determined by their physical location within the system.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "interrupts",
+              "co": 5,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "What is the difference in efficiency between Cycle Stealing and Burst Transfer modes in DMA for real-time CPU tasks on a high-speed disk drive?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Direct Memory Access",
+              "co": 5,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Long Answer Questions",
+      "marks_scheme": "6 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "What is the product of (+13) and (-6) using Booth's Algorithm?",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Booths algorithm",
+              "co": 2,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "What is the main difference between Hardwired and Microprogrammed control approaches?",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Hardwire and micro programmed control",
+              "co": 3,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 13,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "A 4-stage pipeline (Fetch, Decode, Execute, Write-back) suffers from a data hazard when an instruction at the Execute stage requires the result of a previous instruction in the Write-back stage. Here are two hardware-based techniques to resolve this without stalling the pipeline:",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "Pipelining",
+              "co": 3,
+              "bloom_level": "K6"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 14,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "(i) Address size = 64 KB + 4 KB = 68 KB.",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "address mapping and replacement",
+              "co": 4,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 15,
+          "type": "single",
+          "marks": 6,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "What is the mechanism of the interrupt-initiated I/O (I/O) in a CPU?",
+              "marks": 6,
+              "difficulty": "hard",
+              "topic": "interrupt initiated I/O",
+              "co": 5,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Descriptive / Case Study Questions",
+      "marks_scheme": "10 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 16,
+          "type": "choice_group",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "Design a 4-bit Look-Ahead Carry Adder (LACA).",
+              "marks": 10,
+              "difficulty": "very hard",
+              "topic": "Look ahead carries adders",
+              "co": 2,
+              "bloom_level": "K6"
+            },
+            {
+              "label": "b",
+              "text": "(i) What is the structure of a single-level page table?",
+              "marks": 10,
+              "difficulty": "very hard",
+              "topic": "Virtual memory: concept implementation",
+              "co": 4,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 17,
+          "type": "choice_group",
+          "marks": 10,
+          "subquestions": [
+            {
+              "label": "a",
+              "text": "(i) Addressing mode: Immediate mode.",
+              "marks": 10,
+              "difficulty": "very hard",
+              "topic": "execution of a complete instruction",
+              "co": 3,
+              "bloom_level": "K6"
+            },
+            {
+              "label": "b",
+              "text": "What is the purpose of the program or interrupt logic in a data transfer mode for the given I/O devices?",
+              "marks": 10,
+              "difficulty": "very hard",
+              "topic": "Modes of Data Transfer",
+              "co": 5,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 10,
+      "marksEach": 2,
+      "questionType": "single"
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 6,
+      "questionType": "single"
+    },
+    {
+      "section": "C",
+      "questions": 2,
+      "marksEach": 10,
+      "questionType": "choice_group"
+    }
+  ],
+  "difficulty": "Mixed",
+  "createdBy": "69e3b544010eeba35c84cc5c",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69f0daee58902e786b480b62.pdf",
+  "_id": "69f0daee58902e786b480b62",
+  "createdAt": "2026-04-28T16:06:06.556Z",
+  "updatedAt": "2026-04-28T16:06:10.676Z",
+  "__v": 0
+}

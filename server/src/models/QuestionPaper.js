@@ -51,6 +51,7 @@ const sectionSchema = new mongoose.Schema(
     section_id: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String },
+    header_notes: { type: String, default: "" },
     marks_scheme: { type: String },
     attempt_rule: { type: String },
     questions: [questionSchema],
@@ -79,6 +80,8 @@ const patternItemSchema = new mongoose.Schema(
     marksEach: { type: Number, required: true },
     questionType: { type: String, default: "single" },
     attemptRule: { type: String },
+    difficulty: { type: String },
+    description: { type: String },
   },
   { _id: false }
 );
