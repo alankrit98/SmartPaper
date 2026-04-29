@@ -1,0 +1,414 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "End Semester Examination",
+    "subject": "Object Oriented Programming with Java",
+    "subject_code": "BCS403",
+    "duration": "3 Hours",
+    "max_marks": 70
+  },
+  "instructions": [
+    "Attempt all questions as per the rules specified in each section.",
+    "The use of a programmable calculator is prohibited.",
+    "Assume suitable data if any missing."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions",
+      "header_notes": "",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "In a security-sensitive application, you need to ensure that the class 'MasterKey' can only be extended by 'AdminKey' and 'UserKey' within the same module. Which keyword introduced in recent Java versions would you use, and how does it provide more flexibility than the 'final' keyword?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Sealed Classes",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "A developer is manually closing a 'FileInputStream' in a finally block, but the close() method itself throws an IOException which masks the original exception from the try block. Propose a modern Java construct that manages this 'suppressed exception' logic automatically.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Try-with resources",
+              "co": 2,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Consider the lambda expression: (var x, var y) -> x.process(y). Under what specific circumstances is it mandatory or beneficial to use 'var' for lambda parameters instead of omitting the types entirely?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Local Variable Type Inference",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "You are required to store a collection of unique IP addresses that must be retrieved in the exact order they were first detected. Which specific implementation of the 'Set' interface would you choose, and what is its internal data structure overhead compared to a HashSet?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Collection Framework in Java",
+              "co": 4,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "In a Spring Boot REST controller, you have a method that should return a raw JSON string directly to the web client. Explain why using @RestController is more architecturally concise than using @Controller combined with @ResponseBody on every method.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Rest Controller",
+              "co": 5,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "A class 'Config' contains 50 static constants. If you use 'import static com.app.Config.*', analyze the potential impact on code readability versus the performance impact on the JVM during class loading.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Import and Static Import Naming Convention For Packages",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "Explain the 'JVM Reaction' when an unchecked exception like NullPointerException occurs in a thread that does not have a try-catch block. What happens to the other active threads in the same process?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "JVM Reaction to Exceptions",
+              "co": 2,
+              "bloom_level": "K2"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Critical Application Questions",
+      "header_notes": "Attempt any 3 questions.",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "Design a 'PaymentGateway' system using Interfaces and Abstract Classes. The system must support 'CreditCard' and 'UPI' payments. All payments must have a 'transactionID', but only 'CreditCard' payments require 'CVV' validation. Demonstrate how you would use polymorphism to process a list of different payment types while ensuring that validation logic remains specific to the implementation.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Polymorphism",
+              "co": 1,
+              "bloom_level": "K6"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "A multi-threaded server uses a 'SharedResource' where multiple 'Reader' threads can access data simultaneously, but a 'Writer' thread must have exclusive access. Implement a synchronization mechanism using 'wait()' and 'notifyAll()' that prevents 'Thread Starvation' for the writer while maintaining high throughput for the readers.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Synchronizing Threads",
+              "co": 2,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "You are given a 'List<Transaction>' where each Transaction has an 'amount', 'category', and 'date'. Use the Java Stream API to: (i) Filter transactions above 10,000, (ii) Group them by category, and (iii) Calculate the total sum for each category. Explain how the 'Intermediate' and 'Terminal' operations in your code facilitate 'Lazy Evaluation'.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Stream API",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "A logistics company needs to sort 'Package' objects. Each package has a 'weight' and a 'priority' (High, Medium, Low). Implement a custom sorting logic using the 'Comparator' interface such that packages are sorted primarily by priority (High first) and secondarily by weight (descending) for packages with the same priority level.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Comparator Interface",
+              "co": 4,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "In a Spring Boot e-commerce application, a 'DiscountService' bean is a Singleton, but it depends on a 'UserSession' bean which must be unique for every HTTP request. Explain the 'Scope Impedance' problem that arises here and provide a solution using Spring's Scoped Proxy or ObjectFactory approach.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Bean Scopes- Singleton, Prototype, Request, Session, Application",
+              "co": 5,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Detailed Analytical Questions",
+      "header_notes": "",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 13,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Analyze the 'Diamond Problem' in the context of Multiple Inheritance. How does Java's support for 'Default Methods' in Interfaces re-introduce this ambiguity, and how does the compiler force the developer to resolve it?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Default Methods",
+              "co": 1,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Compare 'Records' with traditional 'Classes' for representing immutable data. Explain why Records do not allow instance fields outside the header and how the 'Compact Constructor' simplifies validation compared to standard class constructors.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Records",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ]
+        },
+        {
+          "question_id": 14,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "You are designing a file processing system. Differentiate between using 'Byte Streams' and 'Character Streams' when handling a file that contains UTF-16 encoded text. What are the consequences of using a 'FileInputStream' to read multi-byte characters?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Byte Streams and Character Streams",
+              "co": 2,
+              "bloom_level": "K5"
+            },
+            {
+              "label": "b",
+              "text": "Develop a scenario where a 'Checked Exception' is thrown by a method in a low-level library. Explain the architectural trade-offs between catching and wrapping it into a 'User-Defined Unchecked Exception' versus using the 'throws' keyword to propagate it to the UI layer.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "In-built and User Defined Exceptions",
+              "co": 2,
+              "bloom_level": "K6"
+            }
+          ]
+        },
+        {
+          "question_id": 15,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Explain the concept of 'Functional Interfaces' and their relationship with Lambda Expressions. How does the target typing mechanism in the Java compiler determine which functional interface a lambda expression belongs to?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Functional Interfaces",
+              "co": 3,
+              "bloom_level": "K2"
+            },
+            {
+              "label": "b",
+              "text": "The Java Module System (Project Jigsaw) was introduced to solve 'JAR Hell'. Describe how the 'module-info.java' file uses 'exports' and 'requires' to achieve strong encapsulation and reliable configuration that was previously missing in the Classpath approach.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Java Module System",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ]
+        },
+        {
+          "question_id": 16,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Analyze the internal performance of 'HashMap' when a poorly designed hashCode() function causes many 'collisions'. How did Java 8 improve the worst-case time complexity of HashMap lookups from O(n) to O(log n)?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "HashMap Class",
+              "co": 4,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "A navigation system requires storing a map of 'City' objects where the keys must always be sorted by their GPS coordinates. Compare the suitability of 'LinkedHashMap' versus 'TreeMap' for this requirement, focusing on insertion cost and memory footprint.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "TreeMap Class",
+              "co": 4,
+              "bloom_level": "K4"
+            }
+          ]
+        },
+        {
+          "question_id": 17,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Contrast the use of @PathVariable and @RequestParam in a RESTful API. Design two different URL patterns for a 'Search' feature and a 'Resource Detail' feature, justifying which annotation is better for each based on SEO and API readability.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Path Variable",
+              "co": 5,
+              "bloom_level": "K5"
+            },
+            {
+              "label": "b",
+              "text": "Describe the Spring Bean Lifecycle. If you need to perform a custom cleanup (like closing a database connection) before the application shuts down, which lifecycle callback annotation would you use, and how does Spring ensure this is called?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Life Cycle Call backs",
+              "co": 5,
+              "bloom_level": "K2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 7,
+      "marksEach": 2,
+      "questionType": "single",
+      "difficulty": "Moderate",
+      "description": ""
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 7,
+      "questionType": "single",
+      "difficulty": "",
+      "description": "Attempt any 3 questions."
+    },
+    {
+      "section": "C",
+      "questions": 5,
+      "marksEach": 7,
+      "questionType": "choice_group",
+      "difficulty": "",
+      "description": ""
+    }
+  ],
+  "difficulty": "Very Hard (100%)",
+  "createdBy": "69e3b544010eeba35c84cc5c",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69f1a7480d928f0d11e06385.pdf",
+  "_id": "69f1a7480d928f0d11e06385",
+  "createdAt": "2026-04-29T06:38:00.619Z",
+  "updatedAt": "2026-04-29T06:38:02.613Z",
+  "__v": 0
+}

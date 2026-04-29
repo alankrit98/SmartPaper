@@ -1,0 +1,415 @@
+{
+  "name": "",
+  "metadata": {
+    "exam": "Examination",
+    "subject": "Object Oriented Programming with Java",
+    "subject_code": "BCS403",
+    "duration": "3 Hours",
+    "max_marks": 84
+  },
+  "instructions": [
+    "Attempt all questions in Section A and Section C.",
+    "Attempt any 3 questions in Section B.",
+    "Section A questions carry 2 marks each.",
+    "Section B and C questions carry 7 marks each."
+  ],
+  "sections": [
+    {
+      "section_id": "A",
+      "title": "Section A",
+      "description": "Short Answer Questions (Analytical)",
+      "header_notes": "",
+      "marks_scheme": "2 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 1,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "1",
+              "text": "A developer attempts to extend a 'Final' class to add logging functionality. Propose an alternative design pattern using composition that achieves this without inheritance.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Final Members",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 2,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "2",
+              "text": "In a scenario where a database connection must be closed regardless of whether a query succeeds, why is putting the close() method in a 'finally' block safer than at the end of a 'try' block?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Exception Handling",
+              "co": 2,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 3,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "3",
+              "text": "Refactor a multi-line if-else block that assigns a value based on an enum into a Java 17 Switch Expression using the 'yield' keyword.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Switch Expressions",
+              "co": 3,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 4,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "4",
+              "text": "Explain a scenario where a 'Sealed' interface would be preferred over a traditional interface to enforce domain-specific constraints in a payment processing library.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Sealed Classes",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 5,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "5",
+              "text": "You need to find the first element in a list of integers that is greater than 100 using Stream API. Which terminal operation ensures you stop processing as soon as the element is found?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Stream API",
+              "co": 4,
+              "bloom_level": "K3"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 6,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "6",
+              "text": "Why would you choose a 'LinkedHashMap' over a 'HashMap' when implementing a recent-search-history feature in a web browser?",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "HashMap Class",
+              "co": 4,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 7,
+          "type": "single",
+          "marks": 2,
+          "subquestions": [
+            {
+              "label": "7",
+              "text": "In a Spring Boot REST controller, analyze the impact on URI design when choosing @PathVariable over @RequestParam for identifying a specific user resource.",
+              "marks": 2,
+              "difficulty": "moderate",
+              "topic": "Path Variable",
+              "co": 5,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "B",
+      "title": "Section B",
+      "description": "Long Answer Questions (Hard)",
+      "header_notes": "Attempt any 3 questions.",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 8,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "8",
+              "text": "Design a 'Media Player' system using Abstract Classes and Interfaces. A 'Playable' interface defines basic actions, while an 'AbstractMedia' class handles metadata. Demonstrate how polymorphism allows a single list of 'AbstractMedia' to handle both MP3 and MP4 files with unique 'play()' implementations.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Polymorphism",
+              "co": 1,
+              "bloom_level": "K6"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 9,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "9",
+              "text": "In a banking application, two threads attempt to withdraw money from the same account simultaneously. Using the 'synchronized' keyword and 'Inter-thread Communication' (wait/notify), design a solution that prevents the balance from going negative and ensures threads wait for a deposit if funds are insufficient.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Synchronizing Threads",
+              "co": 2,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 10,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "10",
+              "text": "Analyze a legacy code snippet containing nested anonymous inner classes for filtering a list of transactions. Refactor this using Lambda Expressions and the Stream API. Evaluate how this refactoring improves memory efficiency and code maintainability.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Lambda Expression",
+              "co": 3,
+              "bloom_level": "K5"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 11,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "11",
+              "text": "You are building a high-frequency trading dashboard. Compare the performance of 'ArrayList' and 'LinkedList' for a scenario where 90% of operations are random-access lookups and 10% are insertions at the beginning. Justify your choice of data structure using Big-O notation.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Hierarchy of Collection Framework",
+              "co": 4,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        },
+        {
+          "question_id": 12,
+          "type": "single",
+          "marks": 7,
+          "subquestions": [
+            {
+              "label": "12",
+              "text": "A Spring Boot application needs to switch between 'Dev' and 'Prod' database configurations. Explain how 'Dependency Injection' combined with '@Profile' or '@ConditionalOnProperty' annotations can be used to inject the correct 'DataSource' bean at runtime without changing the service-layer code.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Spring Dependency Injection concepts",
+              "co": 5,
+              "bloom_level": "K4"
+            }
+          ],
+          "options": []
+        }
+      ]
+    },
+    {
+      "section_id": "C",
+      "title": "Section C",
+      "description": "Detailed Choice Questions (Hard)",
+      "header_notes": "",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt all questions",
+      "questions": [
+        {
+          "question_id": 13,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "In a distributed system, you need to transfer immutable data objects representing 'UserProfiles'. Compare the use of 'Records' versus traditional 'Classes' with private final fields. How does the 'Record' feature simplify serialization and boilerplate code?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Records",
+              "co": 1,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Analyze the 'Diamond Syntax' in Java. Explain a specific scenario where using the diamond operator with anonymous inner classes in Java 9+ resolved limitations present in Java 7/8 regarding type inference.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Diamond Syntax",
+              "co": 1,
+              "bloom_level": "K4"
+            }
+          ]
+        },
+        {
+          "question_id": 14,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "A file-processing application uses 'Byte Streams' to read large binary files. If an error occurs mid-way, explain how 'try-with-resources' ensures that all open handles are closed correctly even if the 'close()' method itself throws an exception.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Try-with resources",
+              "co": 2,
+              "bloom_level": "K5"
+            },
+            {
+              "label": "b",
+              "text": "Design a 'CustomException' for a 'VoterRegistration' system. Demonstrate how to use the 'throw' and 'throws' keywords to propagate this exception from a validation method to a central error-handling module in a multi-layered application.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "In-built and User Defined Exceptions",
+              "co": 2,
+              "bloom_level": "K6"
+            }
+          ]
+        },
+        {
+          "question_id": 15,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Explain the concept of 'Functional Interfaces' in the context of the 'Stream API'. How does the 'Predicate' interface facilitate dynamic filtering of objects in a collection based on runtime user input?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Functional Interfaces",
+              "co": 3,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Analyze the 'Java Module System'. How does the 'provides...with' directive in 'module-info.java' support the Service Loader pattern, and why is this superior to traditional classpath-based dependency discovery?",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Java Module System",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ]
+        },
+        {
+          "question_id": 16,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "You are given a list of 'Product' objects. Demonstrate how to use the 'Comparator' interface with Lambda expressions to sort the list first by 'Category' (ascending) and then by 'Price' (descending) without modifying the 'Product' class.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Comparator Interface",
+              "co": 4,
+              "bloom_level": "K3"
+            },
+            {
+              "label": "b",
+              "text": "In a real-time data pipeline, you must ensure that a collection of 'SensorReadings' contains no duplicates and remains sorted by timestamp. Evaluate the trade-offs between using a 'TreeSet' versus a 'SortedSet' backed by a manual sorting logic.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "TreeSet",
+              "co": 4,
+              "bloom_level": "K5"
+            }
+          ]
+        },
+        {
+          "question_id": 17,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Compare 'Singleton' and 'Prototype' bean scopes in Spring. Design a scenario where injecting a 'Prototype' bean into a 'Singleton' bean leads to unexpected behavior, and propose a solution using 'ObjectProvider' or method injection.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Bean Scopes- Singleton, Prototype",
+              "co": 5,
+              "bloom_level": "K5"
+            },
+            {
+              "label": "b",
+              "text": "Design a RESTful API endpoint for a 'Bookstore' that handles 'POST' requests. Use '@RequestBody' to map incoming JSON to a DTO and explain how Spring Boot's 'MappingJackson2HttpMessageConverter' automates the conversion process.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Request Body",
+              "co": 5,
+              "bloom_level": "K6"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pattern": [
+    {
+      "section": "A",
+      "questions": 7,
+      "marksEach": 2,
+      "questionType": "single",
+      "difficulty": "Moderate",
+      "description": ""
+    },
+    {
+      "section": "B",
+      "questions": 5,
+      "marksEach": 7,
+      "questionType": "single",
+      "difficulty": "",
+      "description": "Attempt any 3 questions."
+    },
+    {
+      "section": "C",
+      "questions": 5,
+      "marksEach": 7,
+      "questionType": "choice_group",
+      "difficulty": "",
+      "description": ""
+    }
+  ],
+  "difficulty": "Very Hard (100%)",
+  "createdBy": "69e3b544010eeba35c84cc5c",
+  "pdfUrl": "C:\\Users\\sharm\\OneDrive\\Desktop\\Projects\\MajorProject\\AI_QuestionPaper\\server\\pdfs\\69f1a26091ad890efed52374.pdf",
+  "_id": "69f1a26091ad890efed52374",
+  "createdAt": "2026-04-29T06:17:04.092Z",
+  "updatedAt": "2026-04-29T06:17:06.161Z",
+  "__v": 0
+}

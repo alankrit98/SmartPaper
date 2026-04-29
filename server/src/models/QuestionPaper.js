@@ -20,11 +20,16 @@ const subQuestionSchema = new mongoose.Schema(
 // ── Choice option schema (for choice_group questions) ────────────
 const choiceOptionSchema = new mongoose.Schema(
   {
-    label: { type: String, required: true },
-    text: { type: String, required: true },
-    marks: { type: Number, required: true },
+    label: { type: String, default: "" },
+    text: { type: String, default: "" },
+    marks: { type: Number, default: 0 },
     difficulty: { type: String },
     topic: { type: String },
+    co: { type: Number },
+    bloom_level: {
+      type: String,
+      enum: ["K1", "K2", "K3", "K4", "K5", "K6"],
+    },
   },
   { _id: false }
 );
@@ -51,6 +56,7 @@ const sectionSchema = new mongoose.Schema(
     section_id: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String },
+    header_notes: { type: String, default: "" },
     marks_scheme: { type: String },
     attempt_rule: { type: String },
     questions: [questionSchema],
@@ -79,6 +85,8 @@ const patternItemSchema = new mongoose.Schema(
     marksEach: { type: Number, required: true },
     questionType: { type: String, default: "single" },
     attemptRule: { type: String },
+    difficulty: { type: String },
+    description: { type: String },
   },
   { _id: false }
 );

@@ -8,11 +8,16 @@ Generates questions in a rich JSON format with:
 
 Accepts a syllabus PDF which is sent directly to Gemini
 for context-aware question generation.
+
+Includes:
+  - CO-wise marks balance validation (max spread ≤ 2 marks)
+  - Section-level difficulty override support
+  - Custom section header/description passthrough
 """
 
 import json
 import logging
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Tuple
 
 from google import genai
 
@@ -20,6 +25,8 @@ from config import GOOGLE_API_KEY, LLM_MODEL
 from rag.vector_store import search as vector_search
 
 logger = logging.getLogger(__name__)
+
+MAX_CO_RETRIES = 2  # max additional attempts if CO balance fails
 
 
 # ── Example output for the LLM ──────────────────────────────────
@@ -41,6 +48,7 @@ EXAMPLE_OUTPUT = """{
       "section_id": "A",
       "title": "Short Answer Questions",
       "description": "Answer the following questions briefly",
+      "header_notes": "",
       "marks_scheme": "2 marks each",
       "attempt_rule": "Attempt all questions",
       "questions": [
@@ -66,6 +74,7 @@ EXAMPLE_OUTPUT = """{
       "section_id": "B",
       "title": "Long Answer Questions",
       "description": "Answer in detail",
+      "header_notes": "",
       "marks_scheme": "10 marks each",
       "attempt_rule": "Attempt any 3 out of 5",
       "questions": [
@@ -95,10 +104,121 @@ EXAMPLE_OUTPUT = """{
           ]
         }
       ]
+    },
+    {
+      "section_id": "C",
+      "title": "Detailed Answer Questions",
+      "description": "Attempt any one part from each question",
+      "header_notes": "",
+      "marks_scheme": "7 marks each",
+      "attempt_rule": "Attempt any one part of each question",
+      "questions": [
+        {
+          "question_id": 11,
+          "type": "choice_group",
+          "marks": 7,
+          "subquestions": [],
+          "options": [
+            {
+              "label": "a",
+              "text": "Explain AVL tree rotations with suitable examples.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K4"
+            },
+            {
+              "label": "b",
+              "text": "Discuss B-tree insertion and deletion with examples.",
+              "marks": 7,
+              "difficulty": "hard",
+              "topic": "Trees",
+              "co": 3,
+              "bloom_level": "K4"
+            }
+          ]
+        }
+      ]
     }
   ]
 }"""
 
+
+# ══════════════════════════════════════════════════════════════════
+#  CO Balance Validation
+# ══════════════════════════════════════════════════════════════════
+
+def _collect_leaf_marks(paper: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """Collect all leaf sub-question items with their marks and CO."""
+    items = []
+    for section in paper.get("sections", []):
+        for q in section.get("questions", []):
+            subs = q.get("subquestions", [])
+            opts = q.get("options", [])
+            if q.get("type") == "single" and subs:
+                items.append(subs[0])
+            elif q.get("type") == "subparts" and subs:
+                items.extend(subs)
+            elif q.get("type") == "choice_group":
+                # Prefer options array; fall back to subquestions
+                if opts:
+                    items.extend(opts)
+                elif subs:
+                    items.extend(subs)
+    return items
+
+
+def _compute_co_distribution(paper: Dict[str, Any]) -> Dict[str, int]:
+    """Sum marks per CO from the generated paper."""
+    dist: Dict[str, int] = {}
+    for item in _collect_leaf_marks(paper):
+        marks = int(item.get("marks", 0) or 0)
+        co = item.get("co")
+        if co is not None and co != "":
+            label = f"CO{co}" if not str(co).startswith("CO") else str(co)
+        else:
+            label = "Unassigned"
+        dist[label] = dist.get(label, 0) + marks
+    return dist
+
+
+def _validate_co_balance(paper: Dict[str, Any]) -> Tuple[bool, Dict[str, int], str]:
+    """
+    Validate that CO marks distribution is balanced.
+    
+    Returns:
+        (is_valid, co_distribution, detail_message)
+        is_valid = True when max - min spread across COs is ≤ 2 marks.
+    """
+    co_dist = _compute_co_distribution(paper)
+    
+    # Filter out 'Unassigned' for balance checking
+    assigned = {k: v for k, v in co_dist.items() if k != "Unassigned"}
+    
+    if len(assigned) <= 1:
+        detail = "Only 1 or fewer COs assigned — cannot validate balance."
+        return len(assigned) == 0, co_dist, detail
+    
+    values = list(assigned.values())
+    spread = max(values) - min(values)
+    
+    if spread <= 2:
+        detail = f"CO balance OK: spread={spread}, distribution={assigned}"
+        logger.info(detail)
+        return True, co_dist, detail
+    else:
+        detail = (
+            f"CO balance FAILED: spread={spread} (max allowed=2). "
+            f"Distribution: {assigned}"
+        )
+        logger.warning(detail)
+        return False, co_dist, detail
+
+
+# ══════════════════════════════════════════════════════════════════
+#  Prompt Builder
+# ══════════════════════════════════════════════════════════════════
 
 def _build_prompt_text(
     subject: str,
@@ -111,6 +231,7 @@ def _build_prompt_text(
     subject_code: Optional[str],
     duration: Optional[str],
     instructions: Optional[List[str]],
+    co_feedback: Optional[str] = None,
 ) -> tuple:
     """Build system + human message text strings for question generation."""
 
@@ -124,7 +245,9 @@ def _build_prompt_text(
         "4. Do NOT repeat questions or ask the same concept in different ways.\n"
         "5. Higher-mark questions should be more detailed and require deeper analysis.\n"
         "6. For 'subparts' type questions, split the marks across sub-questions (labels: a, b, c…).\n"
-        "7. For 'choice_group' type questions, provide alternative options the student can choose from.\n"
+        "7. For 'choice_group' type questions, provide TWO alternative options in the 'options' array (NOT 'subquestions'). "
+           "Each option must have: label (a/b), text, marks, difficulty, topic, co, bloom_level. "
+           "Set subquestions to an empty array []. The student picks ONE option from each question.\n"
         "8. For 'single' type questions, use a single subquestion with the same marks.\n"
         "9. Assign appropriate Bloom's taxonomy levels: K1(Remember), K2(Understand), K3(Apply), K4(Analyse), K5(Evaluate), K6(Create).\n"
         "10. Assign Course Outcome numbers (co) logically starting from 1.\n"
@@ -142,7 +265,25 @@ def _build_prompt_text(
             "Focus on clear foundational knowledge assessment without complex scenarios.\n"
         )
 
-    system_text += "12. Return ONLY valid JSON \u2014 no markdown, no code fences, no explanation."
+    # CO Balance constraint
+    system_text += (
+        "12. CRITICAL — CO BALANCE CONSTRAINT: The total marks allocated to each Course Outcome (CO) "
+        "across the entire paper MUST be balanced. The difference between the highest and lowest CO "
+        "mark totals must be AT MOST 2 marks. Distribute questions evenly across COs. "
+        "For example, if total marks = 60 and you use 5 COs, each CO should have approximately 12 marks.\n"
+    )
+
+    system_text += (
+        "13. If a section has a specific difficulty level indicated, ALL questions in that section "
+        "must match that difficulty. Sections without explicit difficulty use the global difficulty.\n"
+    )
+
+    system_text += (
+        "14. If a section includes a 'header_notes' value, include it in the output JSON as-is. "
+        "This is custom text the user wants displayed below the section title.\n"
+    )
+
+    system_text += "15. Return ONLY valid JSON — no markdown, no code fences, no explanation."
 
     # Build section description
     section_desc_lines: List[str] = []
@@ -154,10 +295,19 @@ def _build_prompt_text(
         q_type = sec.get("questionType", "single")
         title = sec.get("title", f"Section {label}")
         attempt = sec.get("attemptRule", "Attempt all questions")
-        section_desc_lines.append(
+        sec_difficulty = sec.get("difficulty", None)
+        sec_description = sec.get("description", None)
+
+        line = (
             f'  - Section {label} ("{title}"): {n} questions × {m} marks each, '
             f'type={q_type}, attempt_rule="{attempt}"'
         )
+        if sec_difficulty:
+            line += f', difficulty={sec_difficulty} (OVERRIDE — all questions in this section must be {sec_difficulty})'
+        if sec_description:
+            line += f', header_notes="{sec_description}"'
+
+        section_desc_lines.append(line)
         total_marks += n * m
 
     section_desc = "\n".join(section_desc_lines)
@@ -191,6 +341,17 @@ def _build_prompt_text(
             + "\n"
         )
 
+    # CO rebalance feedback (used on retry attempts)
+    co_feedback_text = ""
+    if co_feedback:
+        co_feedback_text = (
+            f"\n⚠️ IMPORTANT — CO REBALANCE REQUIRED:\n"
+            f"Your previous attempt had an imbalanced CO distribution. "
+            f"Here is the issue:\n{co_feedback}\n"
+            f"You MUST fix this by redistributing question CO assignments so that "
+            f"the marks per CO differ by at most 2. Adjust the 'co' field of questions accordingly.\n"
+        )
+
     human_text = (
         f"Generate a question paper for:\n"
         f"  Subject: {subject}\n"
@@ -204,6 +365,7 @@ def _build_prompt_text(
         f"{topics_text}"
         f"{instructions_text}"
         f"{rag_text}"
+        f"{co_feedback_text}"
         f"\nReturn the result as JSON in EXACTLY this format (follow the structure precisely):\n"
         f"{EXAMPLE_OUTPUT}"
     )
@@ -269,25 +431,18 @@ async def generate(
     Gemini so the LLM can read the syllabus and generate questions
     based on it.
 
+    Includes CO balance validation — retries up to MAX_CO_RETRIES times
+    if the CO distribution is imbalanced (spread > 2 marks).
+
     Returns a dict with keys: metadata, instructions, sections.
     """
     logger.info(
-        "Generating paper \u2014 subject=%s, difficulty=%s, style=%s, sections=%d, has_pdf=%s",
+        "Generating paper — subject=%s, difficulty=%s, style=%s, sections=%d, has_pdf=%s",
         subject, difficulty, style, len(pattern), bool(syllabus_pdf_bytes),
     )
 
     # 1. Retrieve RAG context from vector store
     rag_context = _get_rag_context(subject, topics)
-
-    # 2. Build prompt text
-    system_text, human_text = _build_prompt_text(
-        subject, difficulty, style, pattern, topics, rag_context,
-        exam, subject_code, duration, instructions,
-    )
-
-    # 3. Send PDF + prompt to Gemini SDK (supports native PDF input)
-    logger.info("Using Gemini SDK with direct PDF input")
-    client = genai.Client(api_key=GOOGLE_API_KEY)
 
     # Build the PDF context message based on whether topics are filtered
     if topics:
@@ -305,24 +460,75 @@ async def generate(
             "Use it to ensure questions cover the topics in the syllabus."
         )
 
-    contents = [system_text]
-    if syllabus_pdf_bytes:
-        contents.append(
-            genai.types.Part.from_bytes(data=syllabus_pdf_bytes, mime_type="application/pdf")
+    # Retry loop for CO balance
+    best_result = None
+    best_spread = float("inf")
+    co_feedback = None
+
+    for attempt in range(1 + MAX_CO_RETRIES):
+        if attempt > 0:
+            logger.info("CO balance retry attempt %d/%d", attempt, MAX_CO_RETRIES)
+
+        # 2. Build prompt text (with CO feedback on retries)
+        system_text, human_text = _build_prompt_text(
+            subject, difficulty, style, pattern, topics, rag_context,
+            exam, subject_code, duration, instructions,
+            co_feedback=co_feedback,
         )
-    contents.append(human_text + pdf_context_msg)
 
-    response = client.models.generate_content(
-        model=LLM_MODEL,
-        contents=contents,
-        config=genai.types.GenerateContentConfig(temperature=0.7),
+        # 3. Send PDF + prompt to Gemini SDK
+        logger.info("Using Gemini SDK with direct PDF input (attempt %d)", attempt + 1)
+        client = genai.Client(api_key=GOOGLE_API_KEY)
+
+        contents = [system_text]
+        if syllabus_pdf_bytes:
+            contents.append(
+                genai.types.Part.from_bytes(data=syllabus_pdf_bytes, mime_type="application/pdf")
+            )
+        contents.append(human_text + pdf_context_msg)
+
+        response = client.models.generate_content(
+            model=LLM_MODEL,
+            contents=contents,
+            config=genai.types.GenerateContentConfig(temperature=0.7),
+        )
+
+        result = _parse_json_response(response.text)
+
+        # 4. Validate CO balance
+        is_valid, co_dist, detail = _validate_co_balance(result)
+
+        # Track best result (smallest spread)
+        assigned = {k: v for k, v in co_dist.items() if k != "Unassigned"}
+        if assigned:
+            spread = max(assigned.values()) - min(assigned.values())
+        else:
+            spread = 0
+
+        if spread < best_spread:
+            best_spread = spread
+            best_result = result
+
+        if is_valid:
+            logger.info(
+                "Paper generated with balanced COs — %d sections, %d total marks, CO dist: %s",
+                len(result.get("sections", [])),
+                result.get("metadata", {}).get("max_marks", 0),
+                co_dist,
+            )
+            return result
+
+        # Build feedback for next attempt
+        co_feedback = (
+            f"Previous CO distribution: {assigned}\n"
+            f"Spread: {spread} marks (max allowed: 2)\n"
+            f"Please redistribute COs so all CO totals differ by at most 2 marks."
+        )
+
+    # All retries exhausted — return best attempt
+    logger.warning(
+        "CO balance not achieved after %d attempts. Using best result (spread=%d). Distribution: %s",
+        1 + MAX_CO_RETRIES, best_spread,
+        _compute_co_distribution(best_result),
     )
-
-    result = _parse_json_response(response.text)
-
-    logger.info(
-        "Paper generated — %d sections, %d total marks",
-        len(result.get("sections", [])),
-        result.get("metadata", {}).get("max_marks", 0),
-    )
-    return result
+    return best_result

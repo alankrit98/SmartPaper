@@ -20,9 +20,12 @@ function collectLeafItems(paper) {
         // Multi-part — each subquestion is a leaf
         items.push(...q.subquestions);
       } else if (q.type === "choice_group") {
-        // Count primary subquestions only (student picks one path)
-        if (q.subquestions?.length > 0) {
-          items.push(...q.subquestions);
+        // choice_group: student picks ONE option, so only count the first.
+        // Data lives in options (preferred) or subquestions (legacy).
+        if (q.options?.length > 0) {
+          items.push(q.options[0]);
+        } else if (q.subquestions?.length > 0) {
+          items.push(q.subquestions[0]);
         }
       }
     }
