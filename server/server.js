@@ -12,25 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ── Core Middleware ──────────────────────────────────────────────
-const allowedOrigins = [
-  "*",
-  "http://localhost:5173", // Vite default local port
-  "http://localhost:3000", // CRA / Next default local port
-  process.env.FRONTEND_URL, // Your deployed frontend URL (e.g. https://my-app.vercel.app)
-].filter(Boolean);
-
-// ── Core Middleware ──────────────────────────────────────────────
-app.use(cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, or Postman)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
-  }));
+app.use(cors({ origin: "*" }));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
